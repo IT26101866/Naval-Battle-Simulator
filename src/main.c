@@ -29,10 +29,10 @@ void print_banner(){
 
 void print_menu(){
     //Main menu
-    printf("1. Start Simulation - S");
-    printf("2. View Instructions - I");
-    printf("Simulation Statics - T");
-    printf("Exit - X");
+    printf("1. Start Simulation - S\n");
+    printf("2. View Instructions - I\n");
+    printf("Simulation Statics - T\n");
+    printf("Exit - X\n");
 
     printf("> ");
 }
@@ -47,8 +47,7 @@ int main(){
         print_menu();
         
         scanf(" %c", &choice);//Get user's choice
-        
-
+    }    
 
     return 0;
 }
