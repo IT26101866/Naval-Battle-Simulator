@@ -29,5 +29,13 @@ typedef struct {
     int is_destroyed;            // 0 = active, 1 = destroyed 
 } EscortShip;
 
+typedef struct {
+    BattleshipTypeConfig config; // embeds the blueprint data inside this specific ship.
+    double x_pos, y_pos;         // Starting coordinates
+    double max_velocity;         // V_max
+    double current_health;       // Starts at 1.0 (100%)
+    double gamma_value;          // Degradation rate
+} Battleship;
+
 
 #endif
