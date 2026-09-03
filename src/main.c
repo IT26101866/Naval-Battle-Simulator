@@ -29,12 +29,12 @@ void print_banner(){
 
 void print_menu(){
     //Main menu
-    printf("1. Start Simulation - S\n");
-    printf("2. View Instructions - I\n");
-    printf("Simulation Statics - T\n");
-    printf("Exit - X\n");
+    printf("--> S = Start Simulation\n");
+    printf("--> I = View Instructions\n");
+    printf("--> T = Simulation Statics\n");
+    printf("--> X = Exit\n");
 
-    printf("> ");
+    printf("\n> ");
 }
 
 
@@ -47,7 +47,37 @@ int main(){
         print_menu();
         
         scanf(" %c", &choice);//Get user's choice
+
+        switch (choice)
+        {
+        case 's':
+        case 'S':
+            printf("\n======SIMULATION SUBMENU======\n");
+            printf("--> Setup");//setup variables
+            printf("--> Show Simulation");//display the statics
+            break;
+
+        case 'i':
+        case 'I':
+            printf("\nDisplaying Instructions\n");
+            break;
+        
+        case 't':
+        case 'T':
+            printf("\nLoading past statistics from text files...\n");
+            break;
+
+        case 'x':
+        case 'X':
+            printf("\nExiting simulator...\n");
+            is_running = 0;//breaks the loop
+            break;
+        default:
+            printf("\nInvalid choice. Please use S, I, T, or X\n");
+            break;
+        }
     }    
 
     return 0;
 }
+ 
