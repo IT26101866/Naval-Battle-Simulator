@@ -78,6 +78,12 @@ int main(){
         }
     }    
 
+    // Pause so the user can read the text before the screen clears again
+    if (is_running == 1) {
+        printf("\nPress Enter to continue...");
+        while(getchar() != '\n'); // clear the buffer
+        getchar(); // wait for the enter key
+    }
+
     return 0;
 }
- 
