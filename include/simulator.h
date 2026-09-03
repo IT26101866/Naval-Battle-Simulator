@@ -9,4 +9,11 @@ typedef struct {
     double angle_range;      // Angle range | e.g., 20[cite: 1]
 } EscortTypeConfig;
 
+typedef struct {
+        char notation[10];      // Type Notation | e.g., "U", "M"[cite: 1]
+        char ship_name[40];     // Ship name | e.g., "USS Iowa (BB-61)"[cite: 1]
+        char gun_name[40];      // Gun name | e.g., "50-caliber Mark 7 gun"[cite: 1]
+} BattleshipTypeConfig;
+
+
 #endif
