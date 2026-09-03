@@ -53,8 +53,8 @@ int main(){
         case 's':
         case 'S':
             printf("\n======SIMULATION SUBMENU======\n");
-            printf("--> Setup");//setup variables
-            printf("--> Show Simulation");//display the statics
+            printf("--> Setup\n");//setup variables
+            printf("--> Show Simulation\n");//display the statics
             break;
 
         case 'i':
@@ -75,14 +75,14 @@ int main(){
         default:
             printf("\nInvalid choice. Please use S, I, T, or X\n");
             break;
-        }
-    }    
+        } 
 
-    // Pause so the user can read the text before the screen clears again
-    if (is_running == 1) {
-        printf("\nPress Enter to continue...");
-        while(getchar() != '\n'); // clear the buffer
-        getchar(); // wait for the enter key
+        // Pause so the user can read the text before the screen clears again
+        if (is_running == 1) {
+            printf("\nPress Enter to continue...");
+            while(getchar() != '\n'); // clear the buffer
+            getchar(); // wait for the enter key
+        }
     }
 
     return 0;
