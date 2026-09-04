@@ -45,4 +45,8 @@ typedef struct {
                                      // exactly the number of ships the user asks for after the simulator starts
 } Battlefield;
 
+// --- FUNCTION PROTOTYPES ---
+void configure_random_seed(void);
+void configure_battleship(void);
+
 #endif
