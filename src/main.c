@@ -52,19 +52,45 @@ int main(){
         {
         case 's':
         case 'S':
-            printf("\n======SIMULATION SUBMENU======\n");
-            printf("--> Setup\n");//setup variables
-            printf("--> Show Simulation\n");//display the statics
-            break;
-
+            int sub_running = 1;
+            char sub_choice;
+                
+            while(sub_running) {
+                printf("\n====== SIMULATION SUBMENU ======\n");
+                printf("--> 1 = Setup (Set variables)\n");
+                printf("--> 2 = Show Simulation\n");
+                printf("--> 3 = Return to Main Menu\n");
+                printf("\n> ");
+                
+                scanf(" %c", &sub_choice);
+                    
+                switch(sub_choice) {
+                    case '1':
+                        printf("\nEntering setup module...\n");
+                        // run_setup_menu(); // Will be built in setup.c
+                        break;
+                    case '2':
+                        printf("\nStarting simulation...\n");
+                        // run_part1a(); // Will be built in part1a.c
+                        break;
+                    case '3':
+                        sub_running = 0; // Break out to main menu
+                        break;
+                    default:
+                        printf("\nInvalid choice. Please use 1, 2, or 3.\n");
+                }
+            }
+            break;        
         case 'i':
         case 'I':
             printf("\nDisplaying Instructions\n");
+            // Expand instructions later
             break;
         
         case 't':
         case 'T':
             printf("\nLoading past statistics from text files...\n");
+            // load_statistics(); // Will be built in file_handler.c
             break;
 
         case 'x':
