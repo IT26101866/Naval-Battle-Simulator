@@ -28,7 +28,7 @@ void configure_random_seed() {
 
 // Battleship selection Interactive Menu
 void configure_battleship() {
-    char choice;
+    int choice;
 
     printf("\n------ CONFIGURE BATTLESHIP PROPERTIES ------\n");
     printf("Select Battleship Type:\n");
