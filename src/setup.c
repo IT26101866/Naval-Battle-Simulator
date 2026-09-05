@@ -29,7 +29,7 @@ void configure_random_seed() {
 }
 
 // Battleship selection Interactive Menu
-void configure_battleship() {
+void configure_battleship(Battlefield *field) {
     int choice;
 
     printf("\n------ CONFIGURE BATTLESHIP PROPERTIES ------\n");
@@ -45,20 +45,34 @@ void configure_battleship() {
     switch (choice)
     {
     case 1:
-        printf("\n[Success] Selected: USS Iowa (BB-61)\n");
-        // Set up configurations here later
+        strcpy(field->player_ship.config.notation, "U");
+        strcpy(field->player_ship.config.ship_name, "USS Iowa (BB-61)");
+        strcpy(field->player_ship.config.gun_name, "50-caliber Mark 7 gun");
+        printf("\n[SUCCESS] Selected: USS Iowa (BB-61)\n");
         break;
     case 2:
-        printf("\n[Success] Selected: MS King George V\n");
+        strcpy(field->player_ship.config.notation, "M");
+        strcpy(field->player_ship.config.ship_name, "MS King George V");
+        strcpy(field->player_ship.config.gun_name, "(356 mm) Mark VII gun");
+        printf("\n[SUCCESS] Selected: MS King George V\n");
         break;
     case 3:
-        printf("\n[Success] Selected: Richelieu\n");
+        strcpy(field->player_ship.config.notation, "R");
+        strcpy(field->player_ship.config.ship_name, "Richelieu");
+        strcpy(field->player_ship.config.gun_name, "(15 inch) Mle 1935 gun");
+        printf("\n[SUCCESS] Selected: Richelieu\n");
         break;
     case 4:
-        printf("\n[Success] Selected: Sovetsky Soyuz-class\n");
+        strcpy(field->player_ship.config.notation, "S");
+        strcpy(field->player_ship.config.ship_name, "Sovetsky Soyuz-class");
+        strcpy(field->player_ship.config.gun_name, "(16 inch) B-37 gun");
+        printf("\n[SUCCESS] Selected: Sovetsky Soyuz-class\n");
         break;    
     default:
-        printf("\n[Error] Invalid selection. Defaulting to USS Iowa.\n");
+        strcpy(field->player_ship.config.notation, "U");
+        strcpy(field->player_ship.config.ship_name, "USS Iowa (BB-61)");
+        strcpy(field->player_ship.config.gun_name, "50-caliber Mark 7 gun");
+        printf("\n[ERROR] Invalid selection. Defaulting to USS Iowa.\n");
         break;
     }
 }
