@@ -90,7 +90,7 @@ void generate_escort_ships(Battlefield *field) {
         field->list_of_escort_ships[i].config.notation[1] = types[type_index]; // A, B, C, D, E (eg. EA)
         field->list_of_escort_ships[i].config.notation[2] = '\0'; // null terminator
 
-        // Assign impact power based on Table 1 
+        // Assign impact power based on escortship type
         // NOTE : types[type_index] this is an array inside another array here type_index returns value from 0 to 4 according to that type will return A to E
         switch (types[type_index]) {
             case 'A': field->list_of_escort_ships[i].config.default_impact = 0.08; break;
@@ -100,5 +100,28 @@ void generate_escort_ships(Battlefield *field) {
             case 'E': field->list_of_escort_ships[i].config.default_impact = 0.04; break;
         }
 
+        // Assign angle range based on escortship type
+         // NOTE : types[type_index] this is an array inside another array here type_index returns value from 0 to 4 according to that type will return A to E
+        switch (types[type_index]) {
+            case 'A': field->list_of_escort_ships[i].config.angle_range = 20; break;
+            case 'B': field->list_of_escort_ships[i].config.angle_range = 30; break;
+            case 'C': field->list_of_escort_ships[i].config.angle_range = 25; break;
+            case 'D': field->list_of_escort_ships[i].config.angle_range = 50; break;
+            case 'E': field->list_of_escort_ships[i].config.angle_range = 70; break;
+        }
+
+        // Random coordinates within the square canvas (0 to D)
+        field->list_of_escort_ships[i].x_pos = ((double)rand() / RAND_MAX) * field->canvas_size;
+        field->list_of_escort_ships[i].y_pos = ((double)rand() / RAND_MAX) * field->canvas_size;
+
+        // Random angle and velocity bounds
+        field->list_of_escort_ships[i].min_angle = (rand() % 30) + 5; // minimum angle ranges from 5 to 34
+        field->list_of_escort_ships[i].max_angle = field->list_of_escort_ships[i].min_angle + field->list_of_escort_ships[i].config.angle_range; 
+        
+        field->list_of_escort_ships[i].min_velocity = (rand() % 50) + 10;
+        field->list_of_escort_ships[i].max_velocity = field->list_of_escort_ships[i].min_velocity + ((rand() % 100) + 50);
+        
+        field->list_of_escort_ships[i].is_destroyed = 0; 
+        field->list_of_escort_ships[i].gamma_value = 0.02; 
     }
 }
