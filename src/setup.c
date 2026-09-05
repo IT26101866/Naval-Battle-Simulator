@@ -76,3 +76,29 @@ void configure_battleship(Battlefield *field) {
         break;
     }
 }
+
+// Generate random properties for escort ships based on Table 1 rules
+void generate_escort_ships(Battlefield *field) {
+    char types[] = {'A', 'B', 'C', 'D', 'E'}; // 5 possible escort ship subtypes
+    
+    for (int i = 0; i < field->num_escorts; i++) {
+        field->list_of_escort_ships[i].id = i + 1; // Unique identifier index
+        
+        // Randomly select one of the 5 escort types
+        int type_index = rand() % 5; // divides a massive random number by 5 and takes the remainder, guaranteeing a result of 0, 1, 2, 3, or 4.
+        field->list_of_escort_ships[i].config.notation[0] = 'E'; // every escortship type starts with E
+        field->list_of_escort_ships[i].config.notation[1] = types[type_index]; // A, B, C, D, E (eg. EA)
+        field->list_of_escort_ships[i].config.notation[2] = '\0'; // null terminator
+
+        // Assign impact power based on Table 1 
+        // NOTE : types[type_index] this is an array inside another array here type_index returns value from 0 to 4 according to that type will return A to E
+        switch (types[type_index]) {
+            case 'A': field->list_of_escort_ships[i].config.default_impact = 0.08; break;
+            case 'B': field->list_of_escort_ships[i].config.default_impact = 0.06; break;
+            case 'C': field->list_of_escort_ships[i].config.default_impact = 0.07; break;
+            case 'D': field->list_of_escort_ships[i].config.default_impact = 0.05; break;
+            case 'E': field->list_of_escort_ships[i].config.default_impact = 0.04; break;
+        }
+
+    }
+}
