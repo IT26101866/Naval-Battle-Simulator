@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h> // To read computer'sclock time
+#include <string.h>
+#include <math.h>
 #include "../include/simulator.h"
 
 // Seed Configuration
