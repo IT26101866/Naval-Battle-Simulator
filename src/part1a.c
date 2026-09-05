@@ -44,5 +44,41 @@ void run_part1a(Battlefield *field) {
             break; // Single shell impact destroys B in Part 1-A
         }
     }
+    // 2. Evaluate outcome based on specification rules
+    if (battleship_sunk) {
+        printf("\n[DEFEAT] The Battleship was sunk by Escort Ship ID: %d\n", sinking_escort_id);
+        // TODO: Save final conditions to text file via file_handler
+    } else {
+        printf("\n[VICTORY] The Battleship survived the engagement!\n");
+        
+        // Check how many escort ships the Battleship can hit
+        // Battleship can launch at any angle 0-90 degrees, max range based on V_max
+        double b_max_range = (pow(field->player_ship.max_velocity, 2) * sin(2 * (45.0 * M_PI / 180.0))) / GRAVITY; // Optimal angle 45 deg for max reach
 
+        for (int i = 0; i < field->num_escorts; i++) {
+            double distance = calculate_distance(
+                field->player_ship.x_pos, field->player_ship.y_pos,
+                field->list_of_escort_ships[i].x_pos, field->list_of_escort_ships[i].y_pos
+            );
+
+            if (distance <= b_max_range) {
+                hits_by_battleship++;
+                field->list_of_escort_ships[i].is_destroyed = 1; // Single hit destroys E in Part 1-A
+                
+                // Time of flight calculation: t_f = (2 * u * sin(theta)) / g
+                // Assuming optimal or average firing angle for simulation output
+                double flight_time = (2 * field->player_ship.max_velocity * sin(45.0 * M_PI / 180.0)) / GRAVITY;
+                if (flight_time > total_battle_time) {
+                    total_battle_time = flight_time;
+                }
+
+                printf(" -> Escort Ship ID %d hit and destroyed at distance %.2f meters.\n", 
+                    field->list_of_escort_ships[i].id, distance);
+            }
+        }
+
+        printf("\nTotal Escort Ships Destroyed: %d\n", hits_by_battleship);
+        printf("Total Time to End Battle: %.2f seconds\n", total_battle_time);
+        // TODO: Save hit details and final battlefield state to text file
+    }
 }
