@@ -43,6 +43,10 @@ int main(){
     int is_running = 1;
     char choice;
 
+    // Instantiate the master battlefield struct
+    Battlefield my_battlefield;  
+    my_battlefield.num_escorts = 0; // Default state
+
     while(is_running){
         print_banner();
         print_menu();
@@ -70,11 +74,18 @@ int main(){
                         printf("\nEntering setup module...\n");
                         configure_random_seed();
                         configure_battleship(&my_battlefield);
-
+                        initialize_battlefield(&my_battlefield);
+                        save_initial_conditions(&my_battlefield);
                         break;
                     case '2':
-                        printf("\nStarting simulation...\n");
-                        // run_part1a(); // Will be built in part1a.c
+                        if (my_battlefield.num_escorts == 0)
+                        {
+                            printf("\n[ERROR] You must run Setup (Option 1) before starting the simulation!\n");
+                        } else
+                        {
+                            printf("\nStarting simulation...\n");
+                            run_part1a(&my_battlefield);
+                        }
                         break;
                     case '3':
                         sub_running = 0; // Break out to main menu
@@ -86,7 +97,8 @@ int main(){
             break;        
         case 'i':
         case 'I':
-            printf("\nDisplaying Instructions\n");
+            printf("\n--- INSTRUCTIONS ---\n");
+            printf("Defend the stationary Battleship against Axis Escort ships.\n");
             // Expand instructions later
             break;
         
@@ -112,6 +124,11 @@ int main(){
             while(getchar() != '\n'); // clear the buffer
             getchar(); // wait for the enter key
         }
+    }
+
+    // Free the dynamically allocated memory before exiting to prevent memory leaks
+    if (my_battlefield.num_escorts > 0) {
+        free(my_battlefield.list_of_escort_ships);
     }
 
     return 0;
