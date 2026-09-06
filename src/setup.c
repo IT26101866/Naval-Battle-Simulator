@@ -94,23 +94,33 @@ void generate_escort_ships(Battlefield *field) {
         // NOTE : types[type_index] this is an array inside another array here type_index returns value from 0 to 4 according to that type will return A to E
         switch (types[type_index]) 
         {
-        case 'A': 
+        case 'A':
+            strcpy(field->list_of_escort_ships[i].config.type_name, "1936A-class Destroyer");
+            strcpy(field->list_of_escort_ships[i].config.gun_name, "SK C/34 naval gun");
             field->list_of_escort_ships[i].config.default_impact = 0.08;
             field->list_of_escort_ships[i].config.angle_range = 20; 
             break;
         case 'B': 
+            strcpy(field->list_of_escort_ships[i].config.type_name, "Gabbiano-class Corvette");
+            strcpy(field->list_of_escort_ships[i].config.gun_name, "L/47 dual-purpose gun");
             field->list_of_escort_ships[i].config.default_impact = 0.06; 
             field->list_of_escort_ships[i].config.angle_range = 30;
             break;
-        case 'C': 
+        case 'C':
+            strcpy(field->list_of_escort_ships[i].config.type_name, "Matsu-class Destroyer");
+            strcpy(field->list_of_escort_ships[i].config.gun_name, "Type 89 dual-purpose gun");
             field->list_of_escort_ships[i].config.default_impact = 0.07; 
             field->list_of_escort_ships[i].config.angle_range = 25;
             break;
         case 'D': 
+            strcpy(field->list_of_escort_ships[i].config.type_name, "F-class Escort Ships");
+            strcpy(field->list_of_escort_ships[i].config.gun_name, "SK C/32 naval gun");
             field->list_of_escort_ships[i].config.default_impact = 0.05; 
             field->list_of_escort_ships[i].config.angle_range = 50;
             break;
-        case 'E': 
+        case 'E':
+            strcpy(field->list_of_escort_ships[i].config.type_name, "Japanese Kaibōkan");
+            strcpy(field->list_of_escort_ships[i].config.gun_name, "(4.7 inch) naval gun");
             field->list_of_escort_ships[i].config.default_impact = 0.04; 
             field->list_of_escort_ships[i].config.angle_range = 70;
             break;
