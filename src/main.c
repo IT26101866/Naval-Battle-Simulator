@@ -57,6 +57,7 @@ int main(){
         {
         case 's':
         case 'S':
+        {
             int sub_running = 1;
             char sub_choice;
                 
@@ -94,7 +95,8 @@ int main(){
                         printf("\nInvalid choice. Please use 1, 2, or 3.\n");
                 }
             }
-            break;        
+            break;
+        }        
         case 'i':
         case 'I':
             printf("\n--- INSTRUCTIONS ---\n");
