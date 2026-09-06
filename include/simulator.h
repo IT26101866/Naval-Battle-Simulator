@@ -48,5 +48,9 @@ typedef struct {
 // --- FUNCTION PROTOTYPES ---
 void configure_random_seed(Battlefield *field);
 void configure_battleship(Battlefield *field);
+void generate_escort_ships(Battlefield *field);
+void initialize_battlefield(Battlefield *field);
+void save_initial_conditions(Battlefield *field);
+void run_part1a(Battlefield *field);
 
 #endif
