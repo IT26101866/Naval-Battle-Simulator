@@ -17,4 +17,26 @@ void save_initial_conditions(Battlefield *field) {
     fprintf(file, "Canvas Size: %.2f x %.2f\n", field->canvas_size, field->canvas_size);
     fprintf(file, "Total Escort Ships (N): %d\n\n", field->num_escorts);
 
+    fprintf(file, "--- BATTLESHIP (ALLIED) ---\n");
+    fprintf(file, "Type: %s [%s]\n", field->player_ship.config.ship_name, field->player_ship.config.notation);
+    fprintf(file, "Gun: %s\n", field->player_ship.config.gun_name);
+    fprintf(file, "Position: (%.2f, %.2f)\n", field->player_ship.x_pos, field->player_ship.y_pos);
+    fprintf(file, "Max Velocity: %.2f m/s\n\n", field->player_ship.max_velocity);
+
+    fprintf(file, "--- ESCORT SHIPS (AXIS) ---\n");
+    for (int i = 0; i < field->num_escorts; i++) {
+        fprintf(file, "ID: %d | Type: %s [%s] | Gun: %s\n", 
+            field->list_of_escort_ships[i].id,
+            field->list_of_escort_ships[i].config.type_name,
+            field->list_of_escort_ships[i].config.notation,
+            field->list_of_escort_ships[i].config.gun_name);
+            
+        fprintf(file, "  Position: (%.2f, %.2f)\n", field->list_of_escort_ships[i].x_pos, field->list_of_escort_ships[i].y_pos);
+        fprintf(file, "  Velocity Range: %.2f m/s to %.2f m/s\n", field->list_of_escort_ships[i].min_velocity, field->list_of_escort_ships[i].max_velocity);
+        fprintf(file, "  Angle Range: %.2f deg to %.2f deg\n", field->list_of_escort_ships[i].min_angle, field->list_of_escort_ships[i].max_angle);
+        fprintf(file, "  Impact Power: %.2f\n\n", field->list_of_escort_ships[i].current_impact_power);
+    }
+
+    fclose(file);
+    printf("\n[SUCCESS] Initial conditions saved to 'data/initial_conditions.txt'\n");
 }
