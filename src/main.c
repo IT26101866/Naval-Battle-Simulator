@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "../include/simulator.h"
 
 void print_banner(){
     //This is used to clear the screen
@@ -67,7 +68,9 @@ int main(){
                 switch(sub_choice) {
                     case '1':
                         printf("\nEntering setup module...\n");
-                        // run_setup_menu(); // Will be built in setup.c
+                        configure_random_seed();
+                        configure_battleship(&my_battlefield);
+
                         break;
                     case '2':
                         printf("\nStarting simulation...\n");
