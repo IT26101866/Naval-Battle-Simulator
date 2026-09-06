@@ -46,7 +46,7 @@ typedef struct {
 } Battlefield;
 
 // --- FUNCTION PROTOTYPES ---
-void configure_random_seed(void);
-void configure_battleship(void);
+void configure_random_seed(Battlefield *field);
+void configure_battleship(Battlefield *field);
 
 #endif
