@@ -90,24 +90,30 @@ void generate_escort_ships(Battlefield *field) {
         field->list_of_escort_ships[i].config.notation[1] = types[type_index]; // A, B, C, D, E (eg. EA)
         field->list_of_escort_ships[i].config.notation[2] = '\0'; // null terminator
 
-        // Assign impact power based on escortship type
+        // Assign impact power & angle range based on escortship type
         // NOTE : types[type_index] this is an array inside another array here type_index returns value from 0 to 4 according to that type will return A to E
-        switch (types[type_index]) {
-            case 'A': field->list_of_escort_ships[i].config.default_impact = 0.08; break;
-            case 'B': field->list_of_escort_ships[i].config.default_impact = 0.06; break;
-            case 'C': field->list_of_escort_ships[i].config.default_impact = 0.07; break;
-            case 'D': field->list_of_escort_ships[i].config.default_impact = 0.05; break;
-            case 'E': field->list_of_escort_ships[i].config.default_impact = 0.04; break;
-        }
-
-        // Assign angle range based on escortship type
-         // NOTE : types[type_index] this is an array inside another array here type_index returns value from 0 to 4 according to that type will return A to E
-        switch (types[type_index]) {
-            case 'A': field->list_of_escort_ships[i].config.angle_range = 20; break;
-            case 'B': field->list_of_escort_ships[i].config.angle_range = 30; break;
-            case 'C': field->list_of_escort_ships[i].config.angle_range = 25; break;
-            case 'D': field->list_of_escort_ships[i].config.angle_range = 50; break;
-            case 'E': field->list_of_escort_ships[i].config.angle_range = 70; break;
+        switch (types[type_index]) 
+        {
+        case 'A': 
+            field->list_of_escort_ships[i].config.default_impact = 0.08;
+            field->list_of_escort_ships[i].config.angle_range = 20; 
+            break;
+        case 'B': 
+            field->list_of_escort_ships[i].config.default_impact = 0.06; 
+            field->list_of_escort_ships[i].config.angle_range = 30;
+            break;
+        case 'C': 
+            field->list_of_escort_ships[i].config.default_impact = 0.07; 
+            field->list_of_escort_ships[i].config.angle_range = 25;
+            break;
+        case 'D': 
+            field->list_of_escort_ships[i].config.default_impact = 0.05; 
+            field->list_of_escort_ships[i].config.angle_range = 50;
+            break;
+        case 'E': 
+            field->list_of_escort_ships[i].config.default_impact = 0.04; 
+            field->list_of_escort_ships[i].config.angle_range = 70;
+            break;
         }
 
         // Random coordinates within the square canvas (0 to D)
