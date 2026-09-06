@@ -115,8 +115,13 @@ void generate_escort_ships(Battlefield *field) {
         field->list_of_escort_ships[i].y_pos = ((double)rand() / RAND_MAX) * field->canvas_size;
 
         // Random angle bounds
-        field->list_of_escort_ships[i].min_angle = (rand() % 30) + 5; // minimum angle ranges from 5 to 34
-        field->list_of_escort_ships[i].max_angle = field->list_of_escort_ships[i].min_angle + field->list_of_escort_ships[i].config.angle_range; 
+        // Generate a valid minimum and maximum firing angle.
+        // The maximum angle must not exceed 90 degrees.
+        double angle_range = field->list_of_escort_ships[i].config.angle_range;
+        double max_possible_min_angle = 90.0 - angle_range;
+
+        field->list_of_escort_ships[i].min_angle = 5.0 + (rand() % (int)(max_possible_min_angle - 5.0 + 1));
+        field->list_of_escort_ships[i].max_angle = field->list_of_escort_ships[i].min_angle + angle_range; 
 
         // Generate minimum velocity first.
         field->list_of_escort_ships[i].min_velocity = 50.0 + (rand() % 101);
