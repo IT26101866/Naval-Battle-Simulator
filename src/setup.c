@@ -167,5 +167,44 @@ void generate_escort_ships(Battlefield *field) {
 
         field->list_of_escort_ships[i].is_destroyed = 0; 
         field->list_of_escort_ships[i].gamma_value = 0.02; 
+
+        field->list_of_escort_ships[i].current_impact_power = field->list_of_escort_ships[i].config.default_impact;
     }
+}
+
+// Initialize canvas size, escort count, and battleship starting position
+void initialize_battlefield(Battlefield *field) {
+    printf("\n----------- BATTLEFIELD SETUP -----------\n");
+    
+    // Canvas size D
+    printf("--> Enter canvas upper-right coordinate D (e.g., 5000 for a 5000x5000 grid): ");
+    scanf("%lf", &field->canvas_size);
+
+    // Number of escort ships N
+    printf("--> Enter number of escort ships (N): ");
+    scanf("%d", &field->num_escorts);
+
+    // Battleship starting position
+    printf("--> Enter Battleship X coordinate (0 to %.2f): ", field->canvas_size);
+    scanf("%lf", &field->player_ship.x_pos);
+    printf("--> Enter Battleship Y coordinate (0 to %.2f): ", field->canvas_size);
+    scanf("%lf", &field->player_ship.y_pos);
+
+    // Battleship max velocity
+    printf("--> Enter Battleship maximum shell velocity (V_max): ");
+    scanf("%lf", &field->player_ship.max_velocity);
+
+    field->player_ship.current_health = 1.0; 
+    field->player_ship.gamma_value = 0.001;  
+
+    // Allocate memory for escort ships dynamically using malloc
+    field->list_of_escort_ships = (EscortShip *)malloc(field->num_escorts * sizeof(EscortShip));
+    
+    if (field->list_of_escort_ships == NULL) {
+        printf("[ERROR] Memory allocation failed for escort ships!\n");
+        exit(1);
+    }
+
+    generate_escort_ships(field);
+    printf("\n[SUCCESS] Battlefield successfully configured with %d escort ships!\n", field->num_escorts);
 }
