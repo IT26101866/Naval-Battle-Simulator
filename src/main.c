@@ -102,6 +102,11 @@ int main(){
                     switch(exec_choice) {
                         case '1':
                             printf("\nEntering setup module...\n");
+                            // MEMORY LEAK PREVENTION: Free old memory if user runs setup twice
+                            if (my_battlefield.list_of_escort_ships != NULL) {
+                                free(my_battlefield.list_of_escort_ships);
+                                my_battlefield.list_of_escort_ships = NULL;
+                            }
                             configure_random_seed();
                             configure_battleship(&my_battlefield);
                             initialize_battlefield(&my_battlefield);
