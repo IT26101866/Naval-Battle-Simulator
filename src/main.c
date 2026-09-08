@@ -65,9 +65,9 @@ int main(){
             while (module_running)
             {
                 printf("\n====== MODULE SELECTION ======\n");
-                printf("--> 1A = Part 1-A (Basic Combat)\n");
-                printf("--> 1B = Part 1-B (Paths & Jams)\n");
-                printf("--> 1C = Part 1-C (Proportional Damage)\n");
+                printf("--> A = Part 1-A (Basic Combat)\n");
+                printf("--> B = Part 1-B (Paths & Jams)\n");
+                printf("--> C = Part 1-C (Proportional Damage)\n");
                 printf("--> R = Return to Main Menu\n");
                 printf("\n> ");
                 
@@ -80,9 +80,9 @@ int main(){
                 }
 
                 // Make sure a valid module is selected before going to Execution menu
-                if (module_choice != '1a' && module_choice != '1A' && 
-                    module_choice != '1b' && module_choice != '1B' && 
-                    module_choice != '1c' && module_choice != '1C') {
+                if (module_choice != 'a' && module_choice != 'A' && 
+                    module_choice != 'b' && module_choice != 'B' && 
+                    module_choice != 'c' && module_choice != 'C') {
                     printf("\n[ERROR] Invalid module. Please select A, B, C, or R.\n");
                     continue; // Skip the rest of this loop iteration
                 }
@@ -115,7 +115,7 @@ int main(){
                             {
                                 printf("\nStarting simulation...\n");
                                 
-                                if (module_choice == '1a' || module_choice == '1A')
+                                if (module_choice == 'a' || module_choice == 'A')
                                 {
                                     run_part1a(&my_battlefield);
                                 }
