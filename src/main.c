@@ -86,43 +86,43 @@ int main(){
                     printf("\n[ERROR] Invalid module. Please select A, B, C, or R.\n");
                     continue; // Skip the rest of this loop iteration
                 }
-            }
             
-            int sub_running = 1;
-            char sub_choice;
+                int exec_running = 1;
+                char exec_choice;
                 
-            while(sub_running) {
-                printf("\n====== SIMULATION SUBMENU ======\n");
-                printf("--> 1 = Setup (Set variables)\n");
-                printf("--> 2 = Show Simulation\n");
-                printf("--> 3 = Return to Main Menu\n");
-                printf("\n> ");
+                while(exec_running) {
+                    printf("\n====== EXECUTION SUBMENU ======\n");
+                    printf("--> 1 = Setup (Set variables)\n");
+                    printf("--> 2 = Show Simulation\n");
+                    printf("--> 3 = Return to Main Menu\n");
+                    printf("\n> ");
                 
-                scanf(" %c", &sub_choice);
+                    scanf(" %c", &exec_choice);
                     
-                switch(sub_choice) {
-                    case '1':
-                        printf("\nEntering setup module...\n");
-                        configure_random_seed();
-                        configure_battleship(&my_battlefield);
-                        initialize_battlefield(&my_battlefield);
-                        save_initial_conditions(&my_battlefield);
-                        break;
-                    case '2':
-                        if (my_battlefield.num_escorts == 0)
-                        {
-                            printf("\n[ERROR] You must run Setup (Option 1) before starting the simulation!\n");
-                        } else
-                        {
-                            printf("\nStarting simulation...\n");
-                            run_part1a(&my_battlefield);
-                        }
-                        break;
-                    case '3':
-                        sub_running = 0; // Break out to main menu
-                        break;
-                    default:
-                        printf("\nInvalid choice. Please use 1, 2, or 3.\n");
+                    switch(exec_choice) {
+                        case '1':
+                            printf("\nEntering setup module...\n");
+                            configure_random_seed();
+                            configure_battleship(&my_battlefield);
+                            initialize_battlefield(&my_battlefield);
+                            save_initial_conditions(&my_battlefield);
+                            break;
+                        case '2':
+                            if (my_battlefield.num_escorts == 0)
+                            {
+                                printf("\n[ERROR] You must run Setup (Option 1) before starting the simulation!\n");
+                            } else
+                            {
+                                printf("\nStarting simulation...\n");
+                                run_part1a(&my_battlefield);
+                            }
+                            break;
+                        case '3':
+                            exec_running = 0; // Break out to main menu
+                            break;
+                        default:
+                            printf("\nInvalid choice. Please use 1, 2, or 3.\n");
+                    }
                 }
             }
             break;
