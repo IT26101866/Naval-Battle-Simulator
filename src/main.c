@@ -161,7 +161,6 @@ int main(){
             printf("\nInvalid choice. Please use S, I, T, or X\n");
             break;
         } 
-
         // Pause so the user can read the text before the screen clears again
         if (is_running == 1) {
             printf("\nPress Enter to continue...");
@@ -169,11 +168,9 @@ int main(){
             getchar(); // wait for the enter key
         }
     }
-
     // Free the dynamically allocated memory before exiting to prevent memory leaks
-    if (my_battlefield.num_escorts > 0) {
-        free(my_battlefield.list_of_escort_ships);
+    if (my_battlefield.list_of_escort_ships != NULL) {
+        free(my_battlefield.list_of_escort_ships);// returns dynamically allocated memory back to OS
     }
-
     return 0;
 }
