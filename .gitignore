@@ -1,3 +1,4 @@
 naval_battle_sim
 *.o
 *.DS_Store
+*.txt
