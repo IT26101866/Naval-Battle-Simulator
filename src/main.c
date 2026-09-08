@@ -59,6 +59,35 @@ int main(){
         case 's':
         case 'S':
         {
+            int module_running = 1;
+            char module_choice;
+
+            while (module_running)
+            {
+                printf("\n====== MODULE SELECTION ======\n");
+                printf("--> A = Part 1-A (Basic Combat)\n");
+                printf("--> B = Part 1-B (Paths & Jams)\n");
+                printf("--> C = Part 1-C (Proportional Damage)\n");
+                printf("--> R = Return to Main Menu\n");
+                printf("\n> ");
+                
+                scanf(" %c", &module_choice);
+
+                // Exit Module Selection early if user wants to go back
+                if (module_choice == 'r' || module_choice == 'R') {
+                    module_running = 0;
+                    break;
+                }
+
+                // Make sure a valid module is selected before going to Execution menu
+                if (module_choice != 'a' && module_choice != 'A' && 
+                    module_choice != 'b' && module_choice != 'B' && 
+                    module_choice != 'c' && module_choice != 'C') {
+                    printf("\n[ERROR] Invalid module. Please select A, B, C, or R.\n");
+                    continue; // Skip the rest of this loop iteration
+                }
+            }
+            
             int sub_running = 1;
             char sub_choice;
                 
