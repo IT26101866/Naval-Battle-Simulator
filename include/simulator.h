@@ -52,5 +52,6 @@ void generate_escort_ships(Battlefield *field);
 void initialize_battlefield(Battlefield *field);
 void save_initial_conditions(Battlefield *field);
 void run_part1a(Battlefield *field);
+void run_part1b(Battlefield *field);
 
 #endif
