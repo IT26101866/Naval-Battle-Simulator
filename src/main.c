@@ -46,6 +46,7 @@ int main(){
     // Instantiate the master battlefield struct
     Battlefield my_battlefield;  
     my_battlefield.num_escorts = 0; // Default state
+    my_battlefield.list_of_escort_ships = NULL; // Safe pointer initialization
 
     while(is_running){
         print_banner();
