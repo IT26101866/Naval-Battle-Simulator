@@ -82,5 +82,21 @@ void run_part1b(Battlefield *field) {
 
         // Calculate max range based on optimal 45 degree angle
         double b_max_range = (pow(field->player_ship.max_velocity, 2) * sin(2 * (45.0 * M_PI / 180.0))) / GRAVITY;
+
+        int step_hits = 0;
+        int active_threats = 0;
+
+        for (int i = 0; i < field->num_escorts; i++)
+        {
+            if (field->list_of_escort_ships[i].is_destroyed) continue;// skips the rest of the steps if the enemy is destroyed
+
+            active_threats++; // Count how many enemies are currently alive
+
+            double distance = calculate_distance(
+                field->player_ship.x_pos, field->player_ship.y_pos,
+                field->list_of_escort_ships[i].x_pos, field->list_of_escort_ships[i].y_pos
+            );
+        }
+        
     }
 }
