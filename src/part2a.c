@@ -76,6 +76,30 @@ void run_part2a(Battlefield *field) {
             printf("\n[DEFEAT] Cumulative damage reached 100%%! Sunk at Step %d.\n", step);
             break;
         }
+
+        // 2. Battleship Counter-Attack Strategy Phase (Part 2-A)
+        printf("[STRATEGY] Scanning for targets and calculating Threat Scores...\n");
+        double b_max_range = (pow(field->player_ship.max_velocity, 2) * sin(2 * (45.0 * M_PI / 180.0))) / GRAVITY;
+        
+        TargetThreat targets[field->num_escorts];
+        int target_count = 0;
+
+        // Scan Phase
+        for (int i = 0; i < field->num_escorts; i++) {
+            if (field->list_of_escort_ships[i].is_destroyed) continue;
+
+            double distance = calculate_distance(field->player_ship.x_pos, field->player_ship.y_pos,
+                                                 field->list_of_escort_ships[i].x_pos, field->list_of_escort_ships[i].y_pos);
+
+            if (distance <= b_max_range) {
+                targets[target_count].array_index = i;
+                targets[target_count].ship_id = field->list_of_escort_ships[i].id;
+                targets[target_count].distance = distance;
+                // THREAT CALCULATION: High power and close distance = High Threat
+                targets[target_count].threat_score = field->list_of_escort_ships[i].config.default_impact / distance;
+                target_count++;
+            }
+        }
     }
     
 }
