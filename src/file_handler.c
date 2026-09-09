@@ -44,7 +44,7 @@ void save_initial_conditions(Battlefield *field) {
 void save_step_results(Battlefield *field, int step, int is_jammed, int step_hits) {
     char filename[100];
     // Create a dynamic filename like "data/step_1_results.txt"
-    sprintf(filename, "data/step_%d_results.txt", step);
+    sprintf(filename, "data/step_%d_results 1-B.txt", step);
 
     FILE *file = fopen(filename, "w");
     if (file == NULL) {
