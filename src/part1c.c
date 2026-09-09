@@ -33,6 +33,17 @@ void run_part1c(Battlefield *field) {
             is_jammed = 1;
             printf("[WARNING] Gun jammed! Minimum vertical angle restricted to %.2f degrees.\n", field->theta_min);
         }
-    }
+ 
+        // 1. Enemy Attack Phase: Accumulate Fractional Damage
+        int step_damage_inflicted = 0;
+        for (int i = 0; i < field->num_escorts; i++) {
+            if (field->list_of_escort_ships[i].is_destroyed) continue;
+
+            double distance = calculate_distance(
+                field->player_ship.x_pos, field->player_ship.y_pos,
+                field->list_of_escort_ships[i].x_pos, field->list_of_escort_ships[i].y_pos
+            );
+        }
+   }
 
 }
