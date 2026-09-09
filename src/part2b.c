@@ -176,4 +176,10 @@ void run_part2b(Battlefield *field) {
             break; 
         }
     }
+    if (!battleship_sunk) {
+        printf("\n--- SIMULATION COMPLETE ---\n");
+        printf("Final Cumulative Damage Taken: %.2f%%\n", battleship_damage * 100.0);
+        printf("Total Escort Ships Destroyed: %d / %d\n", total_hits_by_battleship, field->num_escorts);
+        printf("Total Time Engaging Targets (incl. reloads): %.2f seconds\n", total_battle_time);
+    }
 }
