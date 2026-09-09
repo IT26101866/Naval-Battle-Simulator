@@ -126,6 +126,9 @@ void run_part1b(Battlefield *field) {
             }  
         }
 
+        // Save the results of this specific step to a text file
+        save_step_results(field, step, is_jammed, step_hits);
+
         // 3. Early Termination Check
         if (active_threats - step_hits <= 0) {
             printf("\n[VICTORY] All escort ships neutralized along the path at Step %d!\n", step);

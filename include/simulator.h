@@ -53,5 +53,6 @@ void initialize_battlefield(Battlefield *field);
 void save_initial_conditions(Battlefield *field);
 void run_part1a(Battlefield *field);
 void run_part1b(Battlefield *field);
+void save_step_results(Battlefield *field, int step, int is_jammed, int step_hits);
 
 #endif

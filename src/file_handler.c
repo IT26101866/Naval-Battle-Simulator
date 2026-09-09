@@ -40,3 +40,44 @@ void save_initial_conditions(Battlefield *field) {
     fclose(file);
     printf("\n[SUCCESS] Initial conditions saved to 'data/initial_conditions.txt'\n");
 }
+
+void save_step_results(Battlefield *field, int step, int is_jammed, int step_hits) {
+    char filename[100];
+    // Create a dynamic filename like "data/step_1_results.txt"
+    sprintf(filename, "data/step_%d_results.txt", step);
+
+    FILE *file = fopen(filename, "w");
+    if (file == NULL) {
+        perror("[ERROR] Could not open step file for writing");
+        return;
+    }
+
+    fprintf(file, "=== SIMULATION STEP %d ===\n", step);
+    fprintf(file, "Battleship Position: (%.2f, %.2f)\n", field->player_ship.x_pos, field->player_ship.y_pos);
+    
+    if (is_jammed) {
+        fprintf(file, "Gun Status: JAMMED (Restricted Arc)\n");
+    } else {
+        fprintf(file, "Gun Status: NORMAL\n");
+    }
+
+    fprintf(file, "Escort Ships Destroyed in this step: %d\n", step_hits);
+    fprintf(file, "\n--- ESCORT SHIP STATUS ---\n");
+    
+    int active_threats = 0;
+    for (int i = 0; i < field->num_escorts; i++) {
+        if (field->list_of_escort_ships[i].is_destroyed) {
+            fprintf(file, "ID %d: DESTROYED\n", field->list_of_escort_ships[i].id);
+        } else {
+            active_threats++;
+            fprintf(file, "ID %d: ALIVE | Position: (%.2f, %.2f)\n", 
+                field->list_of_escort_ships[i].id, 
+                field->list_of_escort_ships[i].x_pos, 
+                field->list_of_escort_ships[i].y_pos);
+        }
+    }
+    
+    fprintf(file, "\nTotal Active Threats Remaining: %d\n", active_threats);
+    fclose(file);
+    printf("[SUCCESS] Step %d results saved to '%s'\n", step, filename);
+}
