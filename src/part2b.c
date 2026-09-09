@@ -139,8 +139,6 @@ void run_part2b(Battlefield *field) {
         }
 
         // 3. Battleship Counter-Attack Strategy Phase
-        int attack_order_ids[field->num_escorts]; 
-
         if (target_count > 0) {
             printf("[ACTION] Engaging targets in optimized order:\n");
             for (int t = 0; t < target_count; t++) {
