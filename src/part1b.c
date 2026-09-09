@@ -63,6 +63,13 @@ void run_part1b(Battlefield *field) {
             // calculate the min range for this escort ship based on its min velocity and min angle 
             double min_angle_rad = field->list_of_escort_ships[i].min_angle * (M_PI / 180.0);
             double min_range = (pow(field->list_of_escort_ships[i].min_velocity, 2) * sin(2 * min_angle_rad)) / GRAVITY;
+
+            // check if distance falls within the attack range annulus/circle, it can hit
+            if (distance >= min_range && distance <= max_range) {
+                battleship_sunk = 1;
+                printf("[DEFEAT] The Battleship was sunk at Step %d by Escort Ship ID: %d\n", step, field->list_of_escort_ships[i].id);
+                break; // Break the inner loop, Battleship is destroyed
+            }
         }
     }
 }
