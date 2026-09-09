@@ -50,8 +50,27 @@ void run_part1c(Battlefield *field) {
             double min_angle_rad = field->list_of_escort_ships[i].min_angle * (M_PI / 180.0);
             double min_range = (pow(field->list_of_escort_ships[i].min_velocity, 2) * sin(2 * min_angle_rad)) / GRAVITY;
 
+            if (distance >= min_range && distance <= max_range) {
+                // Add cumulative damage based on escort ship impact power
+                double power = field->list_of_escort_ships[i].config.default_impact;
+                battleship_damage += power;
+                step_damage_inflicted++;
+                
+                printf(" -> [HIT] Escort ID %d hit Battleship! Damage +%.2f%% (Total: %.2f%%)\n", 
+                    field->list_of_escort_ships[i].id, power * 100.0, battleship_damage * 100.0);
 
+                if (battleship_damage >= 1.0) {
+                    battleship_sunk = 1;
+                }
+            }
         }
+
+        if (battleship_sunk) {
+            printf("\n[DEFEAT] Cumulative damage reached 100%%! The Battleship was sunk at Step %d.\n", step);
+            break;
+        }
+
+        
    }
 
 }
