@@ -72,7 +72,24 @@ void run_part2b(Battlefield *field) {
             qsort(targets, target_count, sizeof(TargetThreat), compare_threats);
         }
 
+        // Map exact survival time for each escort ship before being destroyed in the queue
+        double cumulative_time = 0.0; 
+        double survival_times[field->num_escorts];
+        for (int i = 0; i < field->num_escorts; i++) {
+            survival_times[i] = -1.0;
+        }
 
+        for (int t = 0; t < target_count; t++) {
+            int i = targets[t].array_index;
+            double val = (targets[t].distance * GRAVITY) / pow(field->player_ship.max_velocity, 2);
+            if (val > 1.0) val = 1.0;
+            double theta_rad = 0.5 * asin(val);
+            double flight_time = (2 * field->player_ship.max_velocity * sin(theta_rad)) / GRAVITY;
+            double reload_penalty = (t > 0) ? field->reload_time : 0.0;
+            
+            cumulative_time += (flight_time + reload_penalty);
+            survival_times[i] = cumulative_time;
+        }
     }
 
 }
