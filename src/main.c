@@ -69,7 +69,7 @@ int main(){
                 printf("--> B = Part 1-B (Paths & Jams)\n");
                 printf("--> C = Part 1-C (Proportional Damage)\n");
                 printf("--> D = Part 2-A (Targeting Strategy)\n");
-                printf("--> E = Run Part 2-B (Continuous Firing)\n");
+                printf("--> E = Part 2-B (Continuous Firing)\n");
                 printf("--> R = Return to Main Menu\n");
                 printf("\n> ");
                 
