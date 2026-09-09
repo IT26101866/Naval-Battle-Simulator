@@ -76,5 +76,11 @@ void run_part1b(Battlefield *field) {
         if (battleship_sunk) {
             break;
         }
+
+        // 2. Battleship Counter-Attack Phase
+        printf("[SURVIVED] Battleship survived enemy fire. Returning fire...\n");
+
+        // Calculate max range based on optimal 45 degree angle
+        double b_max_range = (pow(field->player_ship.max_velocity, 2) * sin(2 * (45.0 * M_PI / 180.0))) / GRAVITY;
     }
 }
