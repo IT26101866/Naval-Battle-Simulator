@@ -90,6 +90,41 @@ void run_part2b(Battlefield *field) {
             cumulative_time += (flight_time + reload_penalty);
             survival_times[i] = cumulative_time;
         }
+
+        // 2. Continuous Enemy Firing Attack Phase (Part 2-B)
+        for (int i = 0; i < field->num_escorts; i++)
+        {
+            if (field->list_of_escort_ships[i].is_destroyed) continue;
+
+            double distance = calculate_distance(field->player_ship.x_pos, field->player_ship.y_pos,
+                                                 field->list_of_escort_ships[i].x_pos, field->list_of_escort_ships[i].y_pos);
+
+            double max_angle_rad = field->list_of_escort_ships[i].max_angle * (M_PI / 180.0);
+            double max_range = (pow(field->list_of_escort_ships[i].max_velocity, 2) * sin(2 * max_angle_rad)) / GRAVITY;
+            double min_angle_rad = field->list_of_escort_ships[i].min_angle * (M_PI / 180.0);
+            double min_range = (pow(field->list_of_escort_ships[i].min_velocity, 2) * sin(2 * min_angle_rad)) / GRAVITY;
+
+            if (distance >= min_range && distance <= max_range) {
+                // Determine how long this ship survived during this step window
+                double time_alive = (survival_times[i] != -1.0) ? survival_times[i] : (target_count > 0 ? cumulative_time : 6.0);
+                
+                double T_E = field->list_of_escort_ships[i].config.fire_interval;
+                if (T_E <= 0.0) T_E = 3.0; // Safety fallback
+
+                // Continuous fire calculation: fires at t = 0 and every T_E interval up to time_alive
+                int shots_fired = 1 + (int)(time_alive / T_E);
+                double power = field->list_of_escort_ships[i].config.default_impact;
+
+                for (int s = 0; s < shots_fired; s++) {
+                    battleship_damage += power;
+                    printf(" -> [CONTINUOUS HIT] Escort ID %d fired! Damage +%.2f%% (Total: %.2f%%)\n", 
+                        field->list_of_escort_ships[i].id, power * 100.0, battleship_damage * 100.0);
+
+                    if (battleship_damage >= 1.0) {
+                        battleship_sunk = 1;
+                    }
+                }
+            }
     }
 
 }
