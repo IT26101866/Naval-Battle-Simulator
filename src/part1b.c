@@ -3,6 +3,13 @@
 #include <math.h>
 #include "../include/simulator.h"
 
+#define GRAVITY 9.81
+
+// Helper function to calculate distance between two coordinates
+double calculate_distance(double x1, double y1, double x2, double y2) {
+    return sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2));
+}
+
 void run_part1b(Battlefield *field) {
     int k_points, jam_step;
     double theta_min;
@@ -16,5 +23,20 @@ void run_part1b(Battlefield *field) {
 
     printf("Enter restricted minimum vertical angle theta_min (0 < theta_min < 30): ");
     scanf("%lf", &theta_min);
+    
+    // Loop through each path point (Simulation 1 & 2 integration)
+    for (int step = 1; step <= k_points; step++) {
+        printf("\n--- Step %d/%d ---\n", step, k_points);
 
+        // Generate or update Battleship position for this step (e.g., random or linear shift)
+        field->player_ship.x_pos = ((double)rand() / RAND_MAX) * field->canvas_size;
+        field->player_ship.y_pos = ((double)rand() / RAND_MAX) * field->canvas_size;
+
+        // Check if gun jam is active (Simulation 2 rule)
+        if (step > jam_step) {
+            printf("[WARNING] Gun jammed! Minimum angle restricted to %.2f degrees.\n", theta_min);
+            // Apply theta_min constraint to your firing logic here
+        }
+
+    }
 }
