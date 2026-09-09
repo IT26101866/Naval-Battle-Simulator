@@ -48,6 +48,30 @@ void run_part2a(Battlefield *field) {
             is_jammed = 1;
             printf("[WARNING] Gun jammed! Restricted to %.2f degrees.\n", field->theta_min);
         }
+
+        // 1. Enemy Attack Phase (Part 1-C Cumulative Logic)
+        for (int i = 0; i < field->num_escorts; i++)
+        {
+            if (field->list_of_escort_ships[i].is_destroyed) continue;
+
+            double distance = calculate_distance(field->player_ship.x_pos, field->player_ship.y_pos,
+                                                 field->list_of_escort_ships[i].x_pos, field->list_of_escort_ships[i].y_pos);
+
+            double max_angle_rad = field->list_of_escort_ships[i].max_angle * (M_PI / 180.0);
+            double max_range = (pow(field->list_of_escort_ships[i].max_velocity, 2) * sin(2 * max_angle_rad)) / GRAVITY;
+            double min_angle_rad = field->list_of_escort_ships[i].min_angle * (M_PI / 180.0);
+            double min_range = (pow(field->list_of_escort_ships[i].min_velocity, 2) * sin(2 * min_angle_rad)) / GRAVITY;
+
+            if (distance >= min_range && distance <= max_range) {
+                double power = field->list_of_escort_ships[i].config.default_impact;
+                battleship_damage += power;
+                printf(" -> [HIT] Escort ID %d hit Battleship! Damage +%.2f%% (Total: %.2f%%)\n", 
+                    field->list_of_escort_ships[i].id, power * 100.0, battleship_damage * 100.0);
+
+                if (battleship_damage >= 1.0) battleship_sunk = 1;
+            }
+        }
+        
     }
     
 }
