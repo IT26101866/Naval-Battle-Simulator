@@ -77,6 +77,41 @@ void run_part1c(Battlefield *field) {
         
         int step_hits = 0;
         int active_threats = 0;
+
+        for (int i = 0; i < field->num_escorts; i++) {
+            if (field->list_of_escort_ships[i].is_destroyed) continue;
+
+            active_threats++; 
+
+            double distance = calculate_distance(
+                field->player_ship.x_pos, field->player_ship.y_pos,
+                field->list_of_escort_ships[i].x_pos, field->list_of_escort_ships[i].y_pos
+            );
+
+            if (distance <= b_max_range) {
+                step_hits++;
+                total_hits_by_battleship++;
+                field->list_of_escort_ships[i].is_destroyed = 1; 
+
+                double val = (distance * GRAVITY) / pow(field->player_ship.max_velocity, 2);
+                if (val > 1.0) val = 1.0;
+                
+                double theta_rad = 0.5 * asin(val);
+                double theta_deg = theta_rad * (180.0 / M_PI);
+
+                if (is_jammed && theta_deg < field->theta_min) {
+                    theta_deg = 90.0 - theta_deg; 
+                    theta_rad = theta_deg * (M_PI / 180.0);
+                }
+
+                double flight_time = (2 * field->player_ship.max_velocity * sin(theta_rad)) / GRAVITY;
+                total_battle_time += flight_time; 
+
+                printf(" -> Escort Ship ID %d hit and destroyed at %.2f meters (Flight time: %.2fs).\n", 
+                    field->list_of_escort_ships[i].id, distance, flight_time);
+            }
+        }
+        
    }
 
 }
