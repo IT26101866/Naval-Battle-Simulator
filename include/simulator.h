@@ -58,7 +58,7 @@ void initialize_battlefield(Battlefield *field);
 void save_initial_conditions(Battlefield *field);
 void run_part1a(Battlefield *field);
 void run_part1b(Battlefield *field);
-void save_step_results(Battlefield *field, int step, int is_jammed, int step_hits);
+void save_step_results_1b(Battlefield *field, int step, int is_jammed, int step_hits);
 void run_part1c(Battlefield *field);
 void save_step_results_1c(Battlefield *field, int step, int is_jammed, int step_hits, double cumulative_damage);
 void run_part2a(Battlefield *field);
@@ -66,6 +66,7 @@ void save_step_results_2a(Battlefield *field, int step, int is_jammed, double cu
 void run_part2b(Battlefield *field);
 void save_step_results_2b(Battlefield *field, int step, int is_jammed, double cumulative_damage, int *attack_order, int target_count);
 void run_part2c(Battlefield *field);
+void save_step_results_2c(Battlefield *field, int step, int is_jammed, int step_hits, double cumulative_damage, double battleship_impact, int battleship_firings);
 void print_instructions(void);
 void load_statistics(void);
 

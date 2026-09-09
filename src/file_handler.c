@@ -217,6 +217,53 @@ void save_step_results_2b(Battlefield *field, int step, int is_jammed, double cu
     fclose(file);
 }
 
+void save_step_results_2c(Battlefield *field, int step, int is_jammed, int step_hits, double cumulative_damage, double battleship_impact, int battleship_firings) {
+    char filename[100];
+    sprintf(filename, "data/step_%d_results_2c.txt", step);
+
+    FILE *file = fopen(filename, "w");
+    if (file == NULL) {
+        perror("[ERROR] Could not open file for writing");
+        return;
+    }
+
+    fprintf(file, "=== SIMULATION STEP %d (PART 2-C) ===\n", step);
+    fprintf(file, "Battleship Position: (%.2f, %.2f)\n", field->player_ship.x_pos, field->player_ship.y_pos);
+    fprintf(file, "Battleship Health: %.2f%%\n", field->player_ship.current_health * 100.0);
+    fprintf(file, "Cumulative Damage Taken: %.2f%%\n", cumulative_damage * 100.0);
+    fprintf(file, "Battleship Impact Power (IPn): %.6f (Firings: %d)\n", battleship_impact, battleship_firings);
+    
+    if (is_jammed) {
+        fprintf(file, "Gun Status: JAMMED (Restricted Arc)\n");
+    } else {
+        fprintf(file, "Gun Status: NORMAL\n");
+    }
+
+    fprintf(file, "\n--- STEP ACTION SUMMARY ---\n");
+    fprintf(file, "Escort Ships Destroyed in This Step: %d\n", step_hits);
+
+    fprintf(file, "\n--- ESCORT SHIP STATUS & IMPACT FACTORS ---\n");
+    int active_threats = 0;
+    for (int i = 0; i < field->num_escorts; i++) {
+        EscortShip *ship = &field->list_of_escort_ships[i];
+        if (ship->is_destroyed) {
+            fprintf(file, "ID %d [%s]: DESTROYED | Final Impact Power: 0.000000\n", ship->id, ship->config.notation);
+        } else {
+            active_threats++;
+            fprintf(file, "ID %d [%s]: ALIVE | Gamma: %.6f | Current Impact Power: %.6f | Position: (%.2f, %.2f)\n", 
+                ship->id,
+                ship->config.notation,
+                ship->gamma_value,
+                ship->current_impact_power,
+                ship->x_pos, 
+                ship->y_pos);
+        }
+    }
+    
+    fprintf(file, "\nTotal Active Threats Remaining: %d\n", active_threats);
+    fclose(file);
+}
+
 void load_statistics() {
     printf("\n============================================================\n");
     printf("              PAST SIMULATION STATISTICS                    \n");
