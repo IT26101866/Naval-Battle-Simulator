@@ -144,30 +144,19 @@ void generate_escort_ships(Battlefield *field) {
         field->list_of_escort_ships[i].min_angle = 5.0 + (rand() % (int)(max_possible_min_angle - 5.0 + 1));
         field->list_of_escort_ships[i].max_angle = field->list_of_escort_ships[i].min_angle + angle_range; 
 
-        // Generate minimum velocity first.
-        field->list_of_escort_ships[i].min_velocity = 50.0 + (rand() % 101);
+        // Proportional velocity generation (works for any Battleship V_max)
+        double b_max_v = field->player_ship.max_velocity;
 
-        // Max velocity logic since EA escortship's max velocity is not random
-        if (types[type_index] == 'A')
-        {
-            // EA has a special maximum velocity:
-            // Vmax = 1.2 × Battleship Vmax
-            field->list_of_escort_ships[i].max_velocity = field->player_ship.max_velocity * 1.2;
-        }else
-        {
-            double e_min_v = field->list_of_escort_ships[i].min_velocity;
-            double b_max_v = field->player_ship.max_velocity;
-
-            // Ensure there is room for Vmax to be greater than Vmin while still remaining below Battleship Vmax
-            if (e_min_v >= b_max_v - 1)
-            {
-                e_min_v = b_max_v - 2;
-                field->list_of_escort_ships[i].min_velocity = e_min_v;
-            }
-
-            // Generate Vmax between Vmin + 1 and B Vmax - 1
-            field->list_of_escort_ships[i].max_velocity = e_min_v + 1 + (rand() % (int)(b_max_v - e_min_v - 1));
-            
+        if (types[type_index] == 'A') {
+            // EA Rule: Max velocity is exactly 1.2x the Battleship's max velocity
+            field->list_of_escort_ships[i].max_velocity = b_max_v * 1.2;
+            // Min velocity safely below max (between 40% and 80% of its max)
+            field->list_of_escort_ships[i].min_velocity = field->list_of_escort_ships[i].max_velocity * (0.4 + ((double)rand() / RAND_MAX * 0.4));
+        } else {
+            // Non EA Rule: Max velocity is a random fraction of Battleship max (between 60% and 95%)
+            field->list_of_escort_ships[i].max_velocity = b_max_v * (0.6 + ((double)rand() / RAND_MAX * 0.35));
+            // Min velocity safely below max (between 40% and 80% of its max)
+            field->list_of_escort_ships[i].min_velocity = field->list_of_escort_ships[i].max_velocity * (0.4 + ((double)rand() / RAND_MAX * 0.4));
         }
 
         field->list_of_escort_ships[i].is_destroyed = 0; 
