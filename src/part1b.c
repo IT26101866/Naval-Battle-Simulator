@@ -71,5 +71,10 @@ void run_part1b(Battlefield *field) {
                 break; // Break the inner loop, Battleship is destroyed
             }
         }
+
+        // If the Battleship was destroyed, break the multi-step path loop completely
+        if (battleship_sunk) {
+            break;
+        }
     }
 }
