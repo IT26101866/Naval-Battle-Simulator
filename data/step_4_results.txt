@@ -1,0 +1,11 @@
+=== SIMULATION STEP 4 ===
+Battleship Position: (7485.59, 348.52)
+Gun Status: NORMAL
+Escort Ships Destroyed in this step: 0
+
+--- ESCORT SHIP STATUS ---
+ID 1: ALIVE | Position: (2797.04, 9805.34)
+ID 2: ALIVE | Position: (943.39, 5517.63)
+ID 3: DESTROYED
+
+Total Active Threats Remaining: 2

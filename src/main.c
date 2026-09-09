@@ -94,7 +94,7 @@ int main(){
                     printf("\n====== EXECUTION SUBMENU ======\n");
                     printf("--> 1 = Setup (Set variables)\n");
                     printf("--> 2 = Show Simulation\n");
-                    printf("--> 3 = Return to Main Menu\n");
+                    printf("--> 3 = Return to Module Selection\n");
                     printf("\n> ");
                 
                     scanf(" %c", &exec_choice);
