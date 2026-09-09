@@ -96,6 +96,19 @@ void run_part1b(Battlefield *field) {
                 field->player_ship.x_pos, field->player_ship.y_pos,
                 field->list_of_escort_ships[i].x_pos, field->list_of_escort_ships[i].y_pos
             );
+
+            if (distance <= b_max_range)
+            {
+                step_hits++;
+                total_hits_by_battleship++;
+                field->list_of_escort_ships[i].is_destroyed = 1;
+
+                // --- NEW GUN JAM & TIME LOGIC ---
+                // Calculate the lower angle required to hit this exact distance
+                double val = (distance * GRAVITY) / pow(field->player_ship.max_velocity, 2);
+                if (val > 1.0) val = 1.0; // Math safety for floating point rounding
+            }
+            
         }
         
     }
