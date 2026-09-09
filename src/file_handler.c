@@ -216,3 +216,27 @@ void save_step_results_2b(Battlefield *field, int step, int is_jammed, double cu
     
     fclose(file);
 }
+
+void load_statistics() {
+    printf("\n============================================================\n");
+    printf("              PAST SIMULATION STATISTICS                    \n");
+    printf("============================================================\n");
+    
+    FILE *file = fopen("data/initial_conditions.txt", "r");
+    if (file == NULL) {
+        printf("\n[ERROR] No past simulation records found in 'data/'.\n");
+        printf("Please run a simulation first to generate persistence files.\n");
+        printf("============================================================\n");
+        return;
+    }
+
+    char buffer[256];
+    while (fgets(buffer, sizeof(buffer), file) != NULL) {
+        printf("%s", buffer);
+    }
+    
+    fclose(file);
+    printf("\n============================================================\n");
+    printf("[INFO] Detailed step logs are saved in the 'data/' directory.\n");
+    printf("============================================================\n");
+}

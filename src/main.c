@@ -38,6 +38,25 @@ void print_menu(){
     printf("\n> ");
 }
 
+void print_instructions() {
+    printf("\n============================================================\n");
+    printf("              NAVAL BATTLE SIMULATOR - INSTRUCTIONS         \n");
+    printf("============================================================\n");
+    printf("OBJECTIVE:\n");
+    printf("Defend your allied Battleship against Axis Escort ships along\n");
+    printf("a multi-step strategic path before cumulative damage hits 100%%.\n\n");
+    printf("MODULE GUIDE:\n");
+    printf("--> Part 1-A: Basic combat mechanics and projectile physics.\n");
+    printf("--> Part 1-B: Gun jam constraints and restricted firing arcs.\n");
+    printf("--> Part 1-C: Proportional cumulative attrition and damage tracking.\n");
+    printf("--> Part 2-A: Greedy algorithm threat scoring & reload penalties.\n");
+    printf("--> Part 2-B: Continuous enemy firing intervals and shell barrages.\n\n");
+    printf("CONTROLS:\n");
+    printf("--> Use keyboard letters (S, I, T, X) for the main menu.\n");
+    printf("--> Use letters (A-E) to select simulation modules.\n");
+    printf("--> Use numbers (1-3) inside the execution submenu.\n");
+    printf("============================================================\n");
+}
 
 int main(){
     int is_running = 1;
@@ -164,15 +183,13 @@ int main(){
         }        
         case 'i':
         case 'I':
-            printf("\n--- INSTRUCTIONS ---\n");
-            printf("Defend the stationary Battleship against Axis Escort ships.\n");
-            // Expand instructions later
+            print_instructions();
             break;
         
         case 't':
         case 'T':
             printf("\nLoading past statistics from text files...\n");
-            // load_statistics(); // Will be built in file_handler.c
+            load_statistics();
             break;
 
         case 'x':

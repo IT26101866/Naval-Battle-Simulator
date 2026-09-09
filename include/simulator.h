@@ -66,5 +66,7 @@ void save_step_results_2a(Battlefield *field, int step, int is_jammed, double cu
 void run_part2b(Battlefield *field);
 void save_step_results_2b(Battlefield *field, int step, int is_jammed, double cumulative_damage, int *attack_order, int target_count);
 void run_part2c(Battlefield *field);
+void print_instructions(void);
+void load_statistics(void);
 
 #endif
