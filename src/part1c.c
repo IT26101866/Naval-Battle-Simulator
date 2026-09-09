@@ -128,5 +128,4 @@ void run_part1c(Battlefield *field) {
         printf("Total Escort Ships Destroyed: %d / %d\n", total_hits_by_battleship, field->num_escorts);
         printf("Total Time Engaging Targets: %.2f seconds\n", total_battle_time);
     }
-
 }
