@@ -53,6 +53,11 @@ void run_part1b(Battlefield *field) {
                 field->list_of_escort_ships[i].x_pos, field->list_of_escort_ships[i].y_pos
             );
 
+            // Calculate max range for this escort ship based on its max velocity and max angle
+            // Range equation: R = (u^2 * sin(2*theta)) / g
+            double max_angle_rad = field->list_of_escort_ships[i].max_angle * (M_PI / 180.0); // Converts the escort ship's maximum vertical gun angle from degrees into radians
+            double max_range = (pow(field->list_of_escort_ships[i].max_velocity, 2) * sin(2 * max_angle_rad)) / GRAVITY; // Calculates the maximum horizontal strike distance using the projectile range equation
+
         }
     }
 }
