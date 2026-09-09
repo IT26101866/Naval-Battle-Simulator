@@ -23,6 +23,10 @@ void run_part1b(Battlefield *field) {
 
     printf("Enter restricted minimum vertical angle theta_min (0 < theta_min < 30): ");
     scanf("%lf", &theta_min);
+
+    int battleship_sunk = 0;
+    int total_hits_by_battleship = 0;
+    double total_battle_time = 0.0;
     
     // Loop through each path point (Simulation 1 & 2 integration)
     for (int step = 1; step <= k_points; step++) {
@@ -32,11 +36,23 @@ void run_part1b(Battlefield *field) {
         field->player_ship.x_pos = ((double)rand() / RAND_MAX) * field->canvas_size;
         field->player_ship.y_pos = ((double)rand() / RAND_MAX) * field->canvas_size;
 
+        printf("Battleship moved to coordinates: (%.2f, %.2f)\n", field->player_ship.x_pos, field->player_ship.y_pos);
+
         // Check if gun jam is active (Simulation 2 rule)
         if (step > jam_step) {
             printf("[WARNING] Gun jammed! Minimum angle restricted to %.2f degrees.\n", theta_min);
-            // Apply theta_min constraint to your firing logic here
         }
 
+        // 1. Check if any Escort ship can hit the Battleship
+        for (int i = 0; i < field->num_escorts; i++) {
+            if (field->list_of_escort_ships[i].is_destroyed) continue; // Checks if the current escort ship is already dead; if dead the continue statement skips it
+
+            // calculate the distance between battleship & the escortship
+            double distance = calculate_distance(
+                field->player_ship.x_pos, field->player_ship.y_pos,
+                field->list_of_escort_ships[i].x_pos, field->list_of_escort_ships[i].y_pos
+            );
+
+        }
     }
 }
