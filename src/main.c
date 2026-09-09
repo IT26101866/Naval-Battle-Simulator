@@ -124,8 +124,8 @@ int main(){
                                 {
                                     run_part1a(&my_battlefield);
                                 }
-                                else if (module_choice == 'b' || module_choice == 'B') {
-                                    printf("\n[PENDING] Part 1-B logic will execute here.\n");
+                                else if (module_choice == 'b' || module_choice == 'B') 
+                                {
                                     run_part1b(&my_battlefield);
                                 }
                                 else if (module_choice == 'c' || module_choice == 'C') {

@@ -1,55 +1,67 @@
 === NAVAL BATTLE SIMULATOR: INITIAL CONDITIONS ===
 
 --- BATTLEFIELD ---
-Canvas Size: 400.00 x 400.00
-Total Escort Ships (N): 7
+Canvas Size: 700.00 x 700.00
+Total Escort Ships (N): 9
 
 --- BATTLESHIP (ALLIED) ---
 Type: MS King George V [M]
 Gun: (356 mm) Mark VII gun
-Position: (60.00, 70.00)
-Max Velocity: 60.00 m/s
+Position: (40.00, 40.00)
+Max Velocity: 70.00 m/s
 
 --- ESCORT SHIPS (AXIS) ---
-ID: 1 | Type: 1936A-class Destroyer [EA] | Gun: SK C/34 naval gun
-  Position: (263.08, 311.21)
-  Velocity Range: 79.00 m/s to 72.00 m/s
-  Angle Range: 55.00 deg to 75.00 deg
-  Impact Power: 0.08
+ID: 1 | Type: Gabbiano-class Corvette [EB] | Gun: L/47 dual-purpose gun
+  Position: (36.61, 31.39)
+  Velocity Range: 68.00 m/s to 69.00 m/s
+  Angle Range: 8.00 deg to 38.00 deg
+  Impact Power: 0.06
 
-ID: 2 | Type: F-class Escort Ships [ED] | Gun: SK C/32 naval gun
-  Position: (94.09, 157.73)
-  Velocity Range: 58.00 m/s to 59.00 m/s
-  Angle Range: 15.00 deg to 65.00 deg
+ID: 2 | Type: Matsu-class Destroyer [EC] | Gun: Type 89 dual-purpose gun
+  Position: (301.64, 304.06)
+  Velocity Range: 68.00 m/s to 69.00 m/s
+  Angle Range: 8.00 deg to 33.00 deg
+  Impact Power: 0.07
+
+ID: 3 | Type: Japanese Kaibōkan [EE] | Gun: (4.7 inch) naval gun
+  Position: (193.60, 299.39)
+  Velocity Range: 68.00 m/s to 69.00 m/s
+  Angle Range: 17.00 deg to 87.00 deg
+  Impact Power: 0.04
+
+ID: 4 | Type: Japanese Kaibōkan [EE] | Gun: (4.7 inch) naval gun
+  Position: (374.32, 237.92)
+  Velocity Range: 68.00 m/s to 69.00 m/s
+  Angle Range: 18.00 deg to 88.00 deg
+  Impact Power: 0.04
+
+ID: 5 | Type: F-class Escort Ships [ED] | Gun: SK C/32 naval gun
+  Position: (150.80, 515.00)
+  Velocity Range: 68.00 m/s to 69.00 m/s
+  Angle Range: 18.00 deg to 68.00 deg
   Impact Power: 0.05
 
-ID: 3 | Type: Gabbiano-class Corvette [EB] | Gun: L/47 dual-purpose gun
-  Position: (61.93, 69.14)
-  Velocity Range: 58.00 m/s to 59.00 m/s
-  Angle Range: 12.00 deg to 42.00 deg
-  Impact Power: 0.06
+ID: 6 | Type: Matsu-class Destroyer [EC] | Gun: Type 89 dual-purpose gun
+  Position: (68.31, 69.74)
+  Velocity Range: 68.00 m/s to 69.00 m/s
+  Angle Range: 49.00 deg to 74.00 deg
+  Impact Power: 0.07
 
-ID: 4 | Type: 1936A-class Destroyer [EA] | Gun: SK C/34 naval gun
-  Position: (366.83, 133.68)
-  Velocity Range: 54.00 m/s to 72.00 m/s
-  Angle Range: 66.00 deg to 86.00 deg
-  Impact Power: 0.08
+ID: 7 | Type: Matsu-class Destroyer [EC] | Gun: Type 89 dual-purpose gun
+  Position: (35.90, 649.81)
+  Velocity Range: 68.00 m/s to 69.00 m/s
+  Angle Range: 19.00 deg to 44.00 deg
+  Impact Power: 0.07
 
-ID: 5 | Type: Gabbiano-class Corvette [EB] | Gun: L/47 dual-purpose gun
-  Position: (260.87, 92.33)
-  Velocity Range: 58.00 m/s to 59.00 m/s
-  Angle Range: 32.00 deg to 62.00 deg
-  Impact Power: 0.06
-
-ID: 6 | Type: Gabbiano-class Corvette [EB] | Gun: L/47 dual-purpose gun
-  Position: (202.38, 220.64)
-  Velocity Range: 58.00 m/s to 59.00 m/s
-  Angle Range: 10.00 deg to 40.00 deg
-  Impact Power: 0.06
-
-ID: 7 | Type: Japanese Kaibōkan [EE] | Gun: (4.7 inch) naval gun
-  Position: (256.47, 65.28)
-  Velocity Range: 58.00 m/s to 59.00 m/s
-  Angle Range: 9.00 deg to 79.00 deg
+ID: 8 | Type: Japanese Kaibōkan [EE] | Gun: (4.7 inch) naval gun
+  Position: (18.79, 148.50)
+  Velocity Range: 68.00 m/s to 69.00 m/s
+  Angle Range: 13.00 deg to 83.00 deg
   Impact Power: 0.04
+
+ID: 9 | Type: F-class Escort Ships [ED] | Gun: SK C/32 naval gun
+  Position: (343.90, 92.37)
+  Velocity Range: 68.00 m/s to 69.00 m/s
+  Angle Range: 36.00 deg to 86.00 deg
+  Impact Power: 0.05
 

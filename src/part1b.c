@@ -12,26 +12,13 @@ static double calculate_distance(double x1, double y1, double x2, double y2) {
 }
 
 void run_part1b(Battlefield *field) {
-    int k_points, jam_step;
-    double theta_min;
-
-    printf("\n=== RUNNING PART 1-B (PATHS & JAMS) ===\n");
-    printf("Enter number of path points (k): ");
-    scanf("%d", &k_points);
-
-    printf("Enter gun jam step (t where t < %d): ", k_points);
-    scanf("%d", &jam_step);
-
-    printf("Enter restricted minimum vertical angle theta_min (0 < theta_min < 30): ");
-    scanf("%lf", &theta_min);
-
     int battleship_sunk = 0;
     int total_hits_by_battleship = 0;
     double total_battle_time = 0.0;
     
     // Loop through each path point (Simulation 1 & 2 integration)
-    for (int step = 1; step <= k_points; step++) {
-        printf("\n--- Step %d/%d ---\n", step, k_points);
+    for (int step = 1; step <= field->k_points; step++) {
+        printf("\n--- Step %d/%d ---\n", step, field->k_points);
 
         // Generate or update Battleship position for this step (e.g., random or linear shift)
         field->player_ship.x_pos = ((double)rand() / RAND_MAX) * field->canvas_size;
@@ -41,9 +28,9 @@ void run_part1b(Battlefield *field) {
 
         // Check if gun jam is active (Simulation 2 rule)
         int is_jammed = 0;
-        if (step > jam_step) {
+        if (step > field->jam_step) {
             is_jammed = 1;
-            printf("[WARNING] Gun jammed! Minimum vertical angle restricted to %.2f degrees.\n", theta_min);
+            printf("[WARNING] Gun jammed! Minimum vertical angle restricted to %.2f degrees.\n", field->theta_min);
         }
 
         // 1. Check if any Escort ship can hit the Battleship
@@ -113,7 +100,7 @@ void run_part1b(Battlefield *field) {
                 double theta_deg = theta_rad * (180.0 / M_PI); // Convert to degrees
 
                 // Apply Gun Jam Logic
-                if (is_jammed && theta_deg < theta_min) {
+                if (is_jammed && theta_deg < field->theta_min) {
                     printf(" -> [JAM ACTIVE] Low arc (%.2f deg) jammed. Forced to use high arc!\n", theta_deg);
                     theta_deg = 90.0 - theta_deg; // Force the high arc trajectory
                     theta_rad = theta_deg * (M_PI / 180.0);
@@ -140,7 +127,7 @@ void run_part1b(Battlefield *field) {
     // 4. Final Output 
     if (!battleship_sunk) {
         printf("\n--- SIMULATION COMPLETE ---\n");
-        printf("Battleship survived the entire %d-step path.\n", k_points);
+        printf("Battleship survived the entire %d-step path.\n", field->k_points);
         printf("Total Escort Ships Destroyed: %d / %d\n", total_hits_by_battleship, field->num_escorts);
         printf("Total Time Engaging Targets: %.2f seconds\n", total_battle_time);
     }
