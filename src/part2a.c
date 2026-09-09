@@ -136,6 +136,7 @@ void run_part2a(Battlefield *field) {
                     t + 1, targets[t].ship_id, targets[t].threat_score, targets[t].distance, reload_penalty);
             }
         }
+        
         // Save step results with the attack order
         save_step_results_2a(field, step, is_jammed, battleship_damage, attack_order_ids, target_count);
 
@@ -148,6 +149,13 @@ void run_part2a(Battlefield *field) {
             printf("\n[VICTORY] All escort ships neutralized along the path at Step %d!\n", step);
             break; 
         }
+    }
+
+    if (!battleship_sunk) {
+        printf("\n--- SIMULATION COMPLETE ---\n");
+        printf("Final Cumulative Damage Taken: %.2f%%\n", battleship_damage * 100.0);
+        printf("Total Escort Ships Destroyed: %d / %d\n", total_hits_by_battleship, field->num_escorts);
+        printf("Total Time Engaging Targets (incl. reloads): %.2f seconds\n", total_battle_time);
     }
     
 }
