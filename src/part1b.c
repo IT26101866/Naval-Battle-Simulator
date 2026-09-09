@@ -115,7 +115,7 @@ void run_part1b(Battlefield *field) {
         }
 
         // Save the results of this specific step to a text file
-        save_step_results(field, step, is_jammed, step_hits);
+        save_step_results_1b(field, step, is_jammed, step_hits);
 
         // 3. Early Termination Check
         if (active_threats - step_hits <= 0) {

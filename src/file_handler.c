@@ -41,7 +41,7 @@ void save_initial_conditions(Battlefield *field) {
     printf("\n[SUCCESS] Initial conditions saved to 'data/initial_conditions.txt'\n");
 }
 
-void save_step_results(Battlefield *field, int step, int is_jammed, int step_hits) {
+void save_step_results_1b(Battlefield *field, int step, int is_jammed, int step_hits) {
     char filename[100];
     // Create a dynamic filename like "data/step_1_results.txt"
     sprintf(filename, "data/step_%d_results 1-B.txt", step);
@@ -222,6 +222,7 @@ void load_statistics() {
     printf("              PAST SIMULATION STATISTICS                    \n");
     printf("============================================================\n");
     
+    // 1. Print Initial Conditions
     FILE *file = fopen("data/initial_conditions.txt", "r");
     if (file == NULL) {
         printf("\n[ERROR] No past simulation records found in 'data/'.\n");
@@ -234,9 +235,34 @@ void load_statistics() {
     while (fgets(buffer, sizeof(buffer), file) != NULL) {
         printf("%s", buffer);
     }
-    
     fclose(file);
+
+    // 2. Loop through and print sequential step results for all modules (1b, 1c, 2a, 2b, 2c)
+    printf("\n------------------ STEP-BY-STEP LOGS ------------------\n");
+    int found_steps = 0;
+    const char *suffixes[] = {"_1b.txt", "_1c.txt", "_2a.txt", "_2b.txt", "_2c.txt"};
+    int num_suffixes = 5;
+    
+    for (int step = 1; step <= 20; step++) {
+        for (int s = 0; s < num_suffixes; s++) {
+            char filename[100];
+            sprintf(filename, "data/step_%d_results%s", step, suffixes[s]);
+            
+            FILE *step_file = fopen(filename, "r");
+            if (step_file != NULL) {
+                found_steps++;
+                printf("\n--- Record: Step %d (Module %s) ---\n", step, suffixes[s]);
+                while (fgets(buffer, sizeof(buffer), step_file) != NULL) {
+                    printf("%s", buffer);
+                }
+                fclose(step_file);
+            }
+        }
+    }
+
+    if (found_steps == 0) {
+        printf("\n[INFO] No step result files found yet across any modules.\n");
+    }
+
     printf("\n============================================================\n");
-    printf("[INFO] Detailed step logs are saved in the 'data/' directory.\n");
-    printf("============================================================\n");
 }
