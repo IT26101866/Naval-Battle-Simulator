@@ -117,8 +117,13 @@ void run_part1b(Battlefield *field) {
                     theta_deg = 90.0 - theta_deg; // Force the high arc trajectory
                     theta_rad = theta_deg * (M_PI / 180.0);
                 }
-            }
-            
+
+                // Calculate actual time of flight: t = (2*v*sin(theta)) / g
+                double flight_time = (2 * field->player_ship.max_velocity * sin(theta_rad)) / GRAVITY;
+                total_battle_time += flight_time;
+
+                printf(" -> Escort Ship ID %d hit and destroyed at %.2f meters (Flight time: %.2fs).\n", field->list_of_escort_ships[i].id, distance, flight_time);
+            }  
         }
         
     }
