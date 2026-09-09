@@ -68,8 +68,12 @@ void run_part2b(Battlefield *field) {
             }
         }
 
+        int attack_order_ids[field->num_escorts];
         if (target_count > 0) {
             qsort(targets, target_count, sizeof(TargetThreat), compare_threats);
+            for (int t = 0; t < target_count; t++) {
+                attack_order_ids[t] = targets[t].ship_id;
+            }
         }
 
         // Map exact survival time for each escort ship before being destroyed in the queue
@@ -126,6 +130,8 @@ void run_part2b(Battlefield *field) {
                 }
             }
         }
+
+        save_step_results_2b(field, step, is_jammed, battleship_damage, attack_order_ids, target_count);
 
         if (battleship_sunk) {
             printf("\n[DEFEAT] Cumulative damage reached 100%% from continuous enemy fire at Step %d.\n", step);
