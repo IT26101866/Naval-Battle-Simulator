@@ -107,6 +107,16 @@ void run_part1b(Battlefield *field) {
                 // Calculate the lower angle required to hit this exact distance
                 double val = (distance * GRAVITY) / pow(field->player_ship.max_velocity, 2);
                 if (val > 1.0) val = 1.0; // Math safety for floating point rounding
+
+                double theta_rad = 0.5 * asin(val); // Lower angle in radians
+                double theta_deg = theta_rad * (180.0 / M_PI); // Convert to degrees
+
+                // Apply Gun Jam Logic
+                if (is_jammed && theta_deg < theta_min) {
+                    printf(" -> [JAM ACTIVE] Low arc (%.2f deg) jammed. Forced to use high arc!\n", theta_deg);
+                    theta_deg = 90.0 - theta_deg; // Force the high arc trajectory
+                    theta_rad = theta_deg * (M_PI / 180.0);
+                }
             }
             
         }
