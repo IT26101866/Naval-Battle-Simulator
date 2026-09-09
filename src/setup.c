@@ -203,6 +203,10 @@ void initialize_battlefield(Battlefield *field) {
     printf("--> Enter restricted minimum vertical angle theta_min (0 < theta_min < 30): ");
     scanf("%lf", &field->theta_min);
 
+    // Part 2-A Reload Time
+    printf("--> Enter Battleship gun reload/re-aim time in seconds (T_B^q): ");
+    scanf("%lf", &field->reload_time);
+
     field->player_ship.current_health = 1.0; 
     field->player_ship.gamma_value = 0.001;  
 
