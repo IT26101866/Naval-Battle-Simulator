@@ -68,6 +68,7 @@ int main(){
                 printf("--> A = Part 1-A (Basic Combat)\n");
                 printf("--> B = Part 1-B (Paths & Jams)\n");
                 printf("--> C = Part 1-C (Proportional Damage)\n");
+                printf("--> D = Run Part 2-A (Targeting Strategy)\n");
                 printf("--> R = Return to Main Menu\n");
                 printf("\n> ");
                 
@@ -82,8 +83,9 @@ int main(){
                 // Make sure a valid module is selected before going to Execution menu
                 if (module_choice != 'a' && module_choice != 'A' && 
                     module_choice != 'b' && module_choice != 'B' && 
-                    module_choice != 'c' && module_choice != 'C') {
-                    printf("\n[ERROR] Invalid module. Please select A, B, C, or R.\n");
+                    module_choice != 'c' && module_choice != 'C' &&
+                    module_choice != 'd' && module_choice != 'D') {
+                    printf("\n[ERROR] Invalid module. Please select A, B, C, D or R.\n");
                     continue; // Skip the rest of this loop iteration
                 }
             
@@ -131,7 +133,10 @@ int main(){
                                 else if (module_choice == 'c' || module_choice == 'C') 
                                 {
                                     run_part1c(&my_battlefield);
-                                }   
+                                }
+                                else if (module_choice == 'd' || module_choice == 'D') { // NEW LOGIC
+                                    run_part2a(&my_battlefield);   
+                                }
                             }
                             break;
                         case '3':
