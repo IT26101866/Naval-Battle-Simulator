@@ -69,8 +69,14 @@ void run_part1c(Battlefield *field) {
             printf("\n[DEFEAT] Cumulative damage reached 100%%! The Battleship was sunk at Step %d.\n", step);
             break;
         }
-
         
+        // 2. Battleship Counter-Attack Phase
+        printf("[SURVIVED] Battleship survived enemy fire. Returning fire...\n");
+        
+        double b_max_range = (pow(field->player_ship.max_velocity, 2) * sin(2 * (45.0 * M_PI / 180.0))) / GRAVITY;
+        
+        int step_hits = 0;
+        int active_threats = 0;
    }
 
 }
