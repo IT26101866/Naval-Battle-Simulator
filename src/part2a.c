@@ -25,3 +25,12 @@ static int compare_threats(const void *a, const void *b) {
     if (t1->threat_score > t2->threat_score) return -1;
     return 0;
 }
+
+void run_part2a(Battlefield *field) {
+    printf("\n=== RUNNING PART 2-A (TARGETING STRATEGY & RELOADS) ===\n");
+    
+    int battleship_sunk = 0;
+    double battleship_damage = 0.0; 
+    int total_hits_by_battleship = 0;
+    double total_battle_time = 0.0;
+}
