@@ -39,8 +39,10 @@ void run_part1b(Battlefield *field) {
         printf("Battleship moved to coordinates: (%.2f, %.2f)\n", field->player_ship.x_pos, field->player_ship.y_pos);
 
         // Check if gun jam is active (Simulation 2 rule)
+        int is_jammed = 0;
         if (step > jam_step) {
-            printf("[WARNING] Gun jammed! Minimum angle restricted to %.2f degrees.\n", theta_min);
+            is_jammed = 1;
+            printf("[WARNING] Gun jammed! Minimum vertical angle restricted to %.2f degrees.\n", theta_min);
         }
 
         // 1. Check if any Escort ship can hit the Battleship
