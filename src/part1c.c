@@ -111,7 +111,14 @@ void run_part1c(Battlefield *field) {
                     field->list_of_escort_ships[i].id, distance, flight_time);
             }
         }
-        
+
+        // Save step results including cumulative damage metrics
+        save_step_results_1c(field, step, is_jammed, step_hits, battleship_damage);
+
+        if (active_threats - step_hits <= 0) {
+            printf("\n[VICTORY] All escort ships neutralized along the path at Step %d!\n", step);
+            break; 
+        }
    }
 
 }
