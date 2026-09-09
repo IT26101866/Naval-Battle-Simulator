@@ -132,4 +132,12 @@ void run_part1b(Battlefield *field) {
             break; 
         }    
     }
+
+    // 4. Final Output 
+    if (!battleship_sunk) {
+        printf("\n--- SIMULATION COMPLETE ---\n");
+        printf("Battleship survived the entire %d-step path.\n", k_points);
+        printf("Total Escort Ships Destroyed: %d / %d\n", total_hits_by_battleship, field->num_escorts);
+        printf("Total Time Engaging Targets: %.2f seconds\n", total_battle_time);
+    }
 }
