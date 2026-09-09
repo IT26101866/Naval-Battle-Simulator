@@ -169,3 +169,50 @@ void save_step_results_2a(Battlefield *field, int step, int is_jammed, double cu
     
     fclose(file);
 }
+
+void save_step_results_2b(Battlefield *field, int step, int is_jammed, double cumulative_damage, int *attack_order, int target_count) {
+    char filename[100];
+    sprintf(filename, "data/step_%d_results_2b.txt", step);
+
+    FILE *file = fopen(filename, "w");
+    if (file == NULL) {
+        perror("[ERROR] Could not open file for writing");
+        return;
+    }
+
+    fprintf(file, "=== SIMULATION STEP %d (PART 2-B) ===\n", step);
+    fprintf(file, "Battleship Position: (%.2f, %.2f)\n", field->player_ship.x_pos, field->player_ship.y_pos);
+    fprintf(file, "Cumulative Damage Taken (incl. Continuous Fire): %.2f%%\n", cumulative_damage * 100.0);
+    
+    if (is_jammed) {
+        fprintf(file, "Gun Status: JAMMED (Restricted Arc)\n");
+    } else {
+        fprintf(file, "Gun Status: NORMAL\n");
+    }
+
+    fprintf(file, "\n--- BATTLESHIP ATTACK ORDER ---\n");
+    if (target_count == 0) {
+        fprintf(file, "No targets in range during this step.\n");
+    } else {
+        for (int i = 0; i < target_count; i++) {
+            fprintf(file, "Target Priority %d: Escort Ship ID %d\n", i + 1, attack_order[i]);
+        }
+    }
+
+    fprintf(file, "\n--- ESCORT SHIP STATUS ---\n");
+    int active_threats = 0;
+    for (int i = 0; i < field->num_escorts; i++) {
+        if (field->list_of_escort_ships[i].is_destroyed) {
+            fprintf(file, "ID %d: DESTROYED\n", field->list_of_escort_ships[i].id);
+        } else {
+            active_threats++;
+            fprintf(file, "ID %d: ALIVE | Fire Interval: %.1fs | Position: (%.2f, %.2f)\n", 
+                field->list_of_escort_ships[i].id,
+                field->list_of_escort_ships[i].config.fire_interval,
+                field->list_of_escort_ships[i].x_pos, 
+                field->list_of_escort_ships[i].y_pos);
+        }
+    }
+    
+    fclose(file);
+}
