@@ -70,6 +70,7 @@ int main(){
                 printf("--> C = Part 1-C (Proportional Damage)\n");
                 printf("--> D = Part 2-A (Targeting Strategy)\n");
                 printf("--> E = Part 2-B (Continuous Firing)\n");
+                printf("--> F = Part 2-C (Impact Power Degradation)\n");
                 printf("--> R = Return to Main Menu\n");
                 printf("\n> ");
                 
@@ -86,8 +87,9 @@ int main(){
                     module_choice != 'b' && module_choice != 'B' && 
                     module_choice != 'c' && module_choice != 'C' &&
                     module_choice != 'd' && module_choice != 'D' &&
-                    module_choice != 'e' && module_choice != 'E') {
-                    printf("\n[ERROR] Invalid module. Please select A, B, C, D, E or R.\n");
+                    module_choice != 'e' && module_choice != 'E' &&
+                    module_choice != 'f' && module_choice != 'F') {
+                    printf("\n[ERROR] Invalid module. Please select A, B, C, D, E, F or R.\n");
                     continue; // Skip the rest of this loop iteration
                 }
             
@@ -143,6 +145,10 @@ int main(){
                                 else if (module_choice == 'e' || module_choice == 'E') 
                                 {
                                     run_part2b(&my_battlefield);   
+                                }
+                                else if (module_choice == 'f' || module_choice == 'F')
+                                {
+                                    run_part2c(&my_battlefield);
                                 }
                             }
                             break;
