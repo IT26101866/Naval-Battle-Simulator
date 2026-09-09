@@ -194,6 +194,15 @@ void initialize_battlefield(Battlefield *field) {
     printf("--> Enter Battleship maximum shell velocity (V_max): ");
     scanf("%lf", &field->player_ship.max_velocity);
 
+    printf("--> Enter number of path points (k): ");
+    scanf("%d", &field->k_points);
+
+    printf("--> Enter gun jam step (t where t < %d): ", field->k_points);
+    scanf("%d", &field->jam_step);
+
+    printf("--> Enter restricted minimum vertical angle theta_min (0 < theta_min < 30): ");
+    scanf("%lf", &field->theta_min);
+
     field->player_ship.current_health = 1.0; 
     field->player_ship.gamma_value = 0.001;  
 

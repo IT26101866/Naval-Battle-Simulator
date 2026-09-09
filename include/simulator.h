@@ -40,6 +40,9 @@ typedef struct {
 typedef struct {
     double canvas_size;      // Upper right coordinate (D, D)
     int num_escorts;         // N number of escort ships
+    int k_points;
+    int jam_step;
+    double theta_min;
     Battleship player_ship;  // The single player ship. It is stored directly here because there is always exactly one Battleship
     EscortShip *list_of_escort_ships; // It acts as a memory link to all our escort ships, allowing us to generate 
                                      // exactly the number of ships the user asks for after the simulator starts
