@@ -98,31 +98,36 @@ void generate_escort_ships(Battlefield *field) {
             strcpy(field->list_of_escort_ships[i].config.type_name, "1936A-class Destroyer");
             strcpy(field->list_of_escort_ships[i].config.gun_name, "SK C/34 naval gun");
             field->list_of_escort_ships[i].config.default_impact = 0.08;
-            field->list_of_escort_ships[i].config.angle_range = 20; 
+            field->list_of_escort_ships[i].config.angle_range = 20;
+            field->list_of_escort_ships[i].config.fire_interval = 2.0 + ((double)rand() / RAND_MAX * 2.0); // Fast: 2.0 - 4.0s
             break;
         case 'B': 
             strcpy(field->list_of_escort_ships[i].config.type_name, "Gabbiano-class Corvette");
             strcpy(field->list_of_escort_ships[i].config.gun_name, "L/47 dual-purpose gun");
             field->list_of_escort_ships[i].config.default_impact = 0.06; 
             field->list_of_escort_ships[i].config.angle_range = 30;
+            field->list_of_escort_ships[i].config.fire_interval = 4.0 + ((double)rand() / RAND_MAX * 3.0); // Slower: 4.0 - 7.0s
             break;
         case 'C':
             strcpy(field->list_of_escort_ships[i].config.type_name, "Matsu-class Destroyer");
             strcpy(field->list_of_escort_ships[i].config.gun_name, "Type 89 dual-purpose gun");
             field->list_of_escort_ships[i].config.default_impact = 0.07; 
             field->list_of_escort_ships[i].config.angle_range = 25;
+            field->list_of_escort_ships[i].config.fire_interval = 3.0 + ((double)rand() / RAND_MAX * 2.5); // 3.0 - 5.5s
             break;
         case 'D': 
             strcpy(field->list_of_escort_ships[i].config.type_name, "F-class Escort Ships");
             strcpy(field->list_of_escort_ships[i].config.gun_name, "SK C/32 naval gun");
             field->list_of_escort_ships[i].config.default_impact = 0.05; 
             field->list_of_escort_ships[i].config.angle_range = 50;
+            field->list_of_escort_ships[i].config.fire_interval = 5.0 + ((double)rand() / RAND_MAX * 3.0); // 5.0 - 8.0s
             break;
         case 'E':
             strcpy(field->list_of_escort_ships[i].config.type_name, "Japanese Kaibōkan");
             strcpy(field->list_of_escort_ships[i].config.gun_name, "(4.7 inch) naval gun");
             field->list_of_escort_ships[i].config.default_impact = 0.04; 
             field->list_of_escort_ships[i].config.angle_range = 70;
+            field->list_of_escort_ships[i].config.fire_interval = 6.0 + ((double)rand() / RAND_MAX * 4.0); // 6.0 - 10.0s
             break;
         }
 
