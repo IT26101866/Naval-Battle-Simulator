@@ -125,6 +125,11 @@ void run_part1b(Battlefield *field) {
                 printf(" -> Escort Ship ID %d hit and destroyed at %.2f meters (Flight time: %.2fs).\n", field->list_of_escort_ships[i].id, distance, flight_time);
             }  
         }
-        
+
+        // 3. Early Termination Check
+        if (active_threats - step_hits <= 0) {
+            printf("\n[VICTORY] All escort ships neutralized along the path at Step %d!\n", step);
+            break; 
+        }    
     }
 }
