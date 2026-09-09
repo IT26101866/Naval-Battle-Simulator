@@ -8,6 +8,7 @@ typedef struct {
     char gun_name[40];       // Gun name | e.g., "SK C/34 naval gun"
     double default_impact;   // Impact power | e.g., 0.08
     double angle_range;      // Angle range | e.g., 20
+    double fire_interval;    // T_E^p time between consecutive enemy firings
 } EscortTypeConfig;
 
 typedef struct {
