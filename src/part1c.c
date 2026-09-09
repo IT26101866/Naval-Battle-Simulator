@@ -43,6 +43,14 @@ void run_part1c(Battlefield *field) {
                 field->player_ship.x_pos, field->player_ship.y_pos,
                 field->list_of_escort_ships[i].x_pos, field->list_of_escort_ships[i].y_pos
             );
+
+            double max_angle_rad = field->list_of_escort_ships[i].max_angle * (M_PI / 180.0);
+            double max_range = (pow(field->list_of_escort_ships[i].max_velocity, 2) * sin(2 * max_angle_rad)) / GRAVITY;
+            
+            double min_angle_rad = field->list_of_escort_ships[i].min_angle * (M_PI / 180.0);
+            double min_range = (pow(field->list_of_escort_ships[i].min_velocity, 2) * sin(2 * min_angle_rad)) / GRAVITY;
+
+
         }
    }
 
