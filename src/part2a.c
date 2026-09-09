@@ -136,6 +136,18 @@ void run_part2a(Battlefield *field) {
                     t + 1, targets[t].ship_id, targets[t].threat_score, targets[t].distance, reload_penalty);
             }
         }
+        // Save step results with the attack order
+        save_step_results_2a(field, step, is_jammed, battleship_damage, attack_order_ids, target_count);
+
+        // Early termination check
+        int active_threats = 0;
+        for (int i = 0; i < field->num_escorts; i++) {
+            if (field->list_of_escort_ships[i].is_destroyed == 0) active_threats++;
+        }
+        if (active_threats == 0) {
+            printf("\n[VICTORY] All escort ships neutralized along the path at Step %d!\n", step);
+            break; 
+        }
     }
     
 }
