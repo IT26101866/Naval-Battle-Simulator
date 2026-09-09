@@ -58,6 +58,9 @@ void run_part1b(Battlefield *field) {
             double max_angle_rad = field->list_of_escort_ships[i].max_angle * (M_PI / 180.0); // Converts the escort ship's maximum vertical gun angle from degrees into radians
             double max_range = (pow(field->list_of_escort_ships[i].max_velocity, 2) * sin(2 * max_angle_rad)) / GRAVITY; // Calculates the maximum horizontal strike distance using the projectile range equation
 
+            // calculate the min range for this escort ship based on its min velocity and min angle 
+            double min_angle_rad = field->list_of_escort_ships[i].min_angle * (M_PI / 180.0);
+            double min_range = (pow(field->list_of_escort_ships[i].min_velocity, 2) * sin(2 * min_angle_rad)) / GRAVITY;
         }
     }
 }
