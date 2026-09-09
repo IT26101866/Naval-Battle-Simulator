@@ -72,6 +72,10 @@ void run_part2a(Battlefield *field) {
             }
         }
         
+        if (battleship_sunk) {
+            printf("\n[DEFEAT] Cumulative damage reached 100%%! Sunk at Step %d.\n", step);
+            break;
+        }
     }
     
 }
