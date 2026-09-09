@@ -1,37 +1,55 @@
 === NAVAL BATTLE SIMULATOR: INITIAL CONDITIONS ===
 
 --- BATTLEFIELD ---
-Canvas Size: 600.00 x 600.00
-Total Escort Ships (N): 4
+Canvas Size: 400.00 x 400.00
+Total Escort Ships (N): 7
 
 --- BATTLESHIP (ALLIED) ---
-Type: USS Iowa (BB-61) [U]
-Gun: 50-caliber Mark 7 gun
-Position: (60.00, 34.00)
-Max Velocity: 70.00 m/s
+Type: MS King George V [M]
+Gun: (356 mm) Mark VII gun
+Position: (60.00, 70.00)
+Max Velocity: 60.00 m/s
 
 --- ESCORT SHIPS (AXIS) ---
 ID: 1 | Type: 1936A-class Destroyer [EA] | Gun: SK C/34 naval gun
-  Position: (394.61, 466.82)
-  Velocity Range: 79.00 m/s to 84.00 m/s
+  Position: (263.08, 311.21)
+  Velocity Range: 79.00 m/s to 72.00 m/s
   Angle Range: 55.00 deg to 75.00 deg
   Impact Power: 0.08
 
 ID: 2 | Type: F-class Escort Ships [ED] | Gun: SK C/32 naval gun
-  Position: (141.13, 236.59)
-  Velocity Range: 61.00 m/s to 63.00 m/s
+  Position: (94.09, 157.73)
+  Velocity Range: 58.00 m/s to 59.00 m/s
   Angle Range: 15.00 deg to 65.00 deg
   Impact Power: 0.05
 
 ID: 3 | Type: Gabbiano-class Corvette [EB] | Gun: L/47 dual-purpose gun
-  Position: (92.90, 103.72)
-  Velocity Range: 68.00 m/s to 69.00 m/s
+  Position: (61.93, 69.14)
+  Velocity Range: 58.00 m/s to 59.00 m/s
   Angle Range: 12.00 deg to 42.00 deg
   Impact Power: 0.06
 
 ID: 4 | Type: 1936A-class Destroyer [EA] | Gun: SK C/34 naval gun
-  Position: (550.25, 200.53)
-  Velocity Range: 54.00 m/s to 84.00 m/s
+  Position: (366.83, 133.68)
+  Velocity Range: 54.00 m/s to 72.00 m/s
   Angle Range: 66.00 deg to 86.00 deg
   Impact Power: 0.08
+
+ID: 5 | Type: Gabbiano-class Corvette [EB] | Gun: L/47 dual-purpose gun
+  Position: (260.87, 92.33)
+  Velocity Range: 58.00 m/s to 59.00 m/s
+  Angle Range: 32.00 deg to 62.00 deg
+  Impact Power: 0.06
+
+ID: 6 | Type: Gabbiano-class Corvette [EB] | Gun: L/47 dual-purpose gun
+  Position: (202.38, 220.64)
+  Velocity Range: 58.00 m/s to 59.00 m/s
+  Angle Range: 10.00 deg to 40.00 deg
+  Impact Power: 0.06
+
+ID: 7 | Type: Japanese Kaibōkan [EE] | Gun: (4.7 inch) naval gun
+  Position: (256.47, 65.28)
+  Velocity Range: 58.00 m/s to 59.00 m/s
+  Angle Range: 9.00 deg to 79.00 deg
+  Impact Power: 0.04
 
